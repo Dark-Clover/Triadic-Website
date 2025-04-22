@@ -104,16 +104,7 @@ export const ScrollVelocity = ({
     const spans = []
     for (let i = 0; i < numCopies; i++) {
       spans.push(
-        <span 
-          className={cn(className, textColor, "velocity-text-glow")} 
-          key={i} 
-          ref={i === 0 ? copyRef : null}
-          style={{ 
-            textShadow: "0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5)",
-            fontWeight: 900,
-            letterSpacing: "0.05em"
-          }}
-        >
+        <span className={cn(className, "velocity-text-glow")} key={i} ref={i === 0 ? copyRef : null}>
           {children}
         </span>,
       )
@@ -121,13 +112,7 @@ export const ScrollVelocity = ({
 
     return (
       <div className={cn("relative overflow-hidden", parallaxClassName)} style={parallaxStyle}>
-        <motion.div 
-          className={cn("flex whitespace-nowrap", scrollerClassName)} 
-          style={{ 
-            x, 
-            ...scrollerStyle 
-          }}
-        >
+        <motion.div className={cn("flex whitespace-nowrap", scrollerClassName)} style={{ x, ...scrollerStyle }}>
           {spans}
         </motion.div>
       </div>
@@ -139,7 +124,7 @@ export const ScrollVelocity = ({
       {texts.map((text, index) => (
         <VelocityText
           key={index}
-          className={cn(className)}
+          className={cn(className, textColor)} // Apply textColor class
           baseVelocity={index % 2 !== 0 ? -velocity : velocity}
           scrollContainerRef={scrollContainerRef}
           damping={damping}
@@ -148,17 +133,10 @@ export const ScrollVelocity = ({
           velocityMapping={velocityMapping}
           parallaxClassName={parallaxClassName}
           scrollerClassName={scrollerClassName}
-          parallaxStyle={{
-            ...parallaxStyle,
-            position: "relative",
-            zIndex: 1,
-          }}
-          scrollerStyle={{
-            ...scrollerStyle,
-            filter: "brightness(1.2)",
-          }}
+          parallaxStyle={parallaxStyle}
+          scrollerStyle={scrollerStyle}
         >
-          {text}&nbsp;&nbsp;&nbsp;
+          {text}&nbsp;
         </VelocityText>
       ))}
     </div>

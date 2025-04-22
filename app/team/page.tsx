@@ -43,6 +43,9 @@ const TeamMemberModal = ({ member, isOpen, onClose }) => {
 
   if (!member) return null
 
+  // Only show social links for CEO and Founder
+  const showSocialLinks = member.name === "Syed Ali Haider" || member.name === "Awais Ali"
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -96,10 +99,10 @@ const TeamMemberModal = ({ member, isOpen, onClose }) => {
 
                 <p className="text-gray-300 mb-6">
                   {member.bio ||
-                    `${member.name} is a talented professional at Triadic Media, bringing expertise and creativity to every project.`}
+                    `${member.name} is a talented professional at Triadic Marketing, bringing expertise and creativity to every project.`}
                 </p>
 
-                {member.socialLinks && member.socialLinks.length > 0 && (
+                {showSocialLinks && member.socialLinks && member.socialLinks.length > 0 && (
                   <div className="flex gap-3">
                     {member.socialLinks.map((link, index) => (
                       <a
@@ -135,6 +138,9 @@ const TeamMember = ({ member, index, onClick }) => {
   const cardRef = useRef(null)
   const isInView = useInView(cardRef, { once: true, amount: 0.2 })
   const [rotation, setRotation] = useState({ x: 0, y: 0 })
+
+  // Only show social links for CEO and Founder
+  const showSocialLinks = member.name === "Syed Ali Haider" || member.name === "Awais Ali"
 
   // Handle mouse move for 3D effect
   const handleMouseMove = (e) => {
@@ -189,7 +195,7 @@ const TeamMember = ({ member, index, onClick }) => {
           {/* Image */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)] to-[var(--accent-color)] opacity-20"
-            animate={{ opacity: isHovered ? 0.4 : 0.2 }}
+            animate={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           />
 
@@ -218,7 +224,7 @@ const TeamMember = ({ member, index, onClick }) => {
               <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
               <p className="text-gray-300 text-sm mb-3">{member.role}</p>
 
-              {member.socialLinks && member.socialLinks.length > 0 && (
+              {showSocialLinks && member.socialLinks && member.socialLinks.length > 0 && (
                 <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {member.socialLinks.map((link, index) => (
                     <motion.a
@@ -310,92 +316,48 @@ export default function TeamPage() {
   // Leadership team
   const leadershipTeam = [
     {
-      name: "Syed Ali Haider",
-      role: "CEO",
-      image: "/team/syed-ali-haider.jpg",
-      bio: "As the CEO of Triadic Media, Syed Ali Haider brings visionary leadership and strategic direction to the company. With a passion for digital innovation, he leads the team in delivering exceptional results for clients.",
-      socialLinks: [{ type: "instagram", url: "https://www.instagram.com/syed.ali.haider5/" }],
-    },
-    {
       name: "Awais Ali",
       role: "Founder",
       image: "/team/awais-ali.png",
-      bio: "Awais Ali founded Triadic Media with a vision to transform digital marketing. His innovative approach and industry expertise have been instrumental in establishing Triadic as a leader in the digital space.",
+      bio: "Awais Ali founded Triadic Marketing with a vision to transform digital marketing. His innovative approach and industry expertise have been instrumental in establishing Triadic as a leader in the digital space.",
       socialLinks: [
         { type: "instagram", url: "https://www.instagram.com/awaisalyh/" },
         { type: "linkedin", url: "https://www.linkedin.com/in/awaisali7/" },
       ],
     },
-  ]
-
-  // Technical team
-  const technicalTeam = [
     {
-      name: "Usman Arshad",
-      role: "Senior Web/App Developer",
-      image: "/team/usman-arshad.png",
-      bio: "Usman Arshad leads web and app development at Triadic Media, bringing technical excellence and innovative solutions to every project. His expertise ensures clients receive cutting-edge digital experiences.",
-      socialLinks: [
-        { type: "instagram", url: "https://www.instagram.com/usmaniii/" },
-        { type: "linkedin", url: "https://www.linkedin.com/in/usman-arshad-647235247" },
-        { type: "website", url: "https://usmanarshad.tech/" },
-      ],
-    },
-    {
-      name: "Hasham Yaseen",
-      role: "Head Graphic Designer",
-      image: "/team/hasham-yaseen.png",
-      bio: "Hasham Yaseen leads the graphic design team at Triadic Media, bringing creative vision and artistic excellence to every project. His innovative designs help clients stand out in the digital landscape.",
-      socialLinks: [
-        { type: "instagram", url: "https://www.instagram.com/resistz000/" },
-        { type: "linkedin", url: "https://www.linkedin.com/in/hasham-yaseen-a26077254/" },
-      ],
-    },
-    {
-      name: "Ayma Imtiaz",
-      role: "Design Head",
-      image: "/team/ayma-imtiaz.png",
-      bio: "As Design Head, Ayma Imtiaz brings creative direction and artistic vision to Triadic Media's projects. Her innovative approach ensures clients receive visually stunning and effective design solutions.",
-    },
-    {
-      name: "Aqeel Ahmed",
-      role: "Graphic Designer",
-      image: "/team/aqeel-ahmed.png",
-      bio: "Aqeel Ahmed creates compelling visual content that captures attention and communicates brand messages effectively. His design skills contribute to the success of client campaigns across platforms.",
-    },
-    {
-      name: "Asfand Ali",
-      role: "Designer",
-      image: "/team/asfand-ali.png",
-      bio: "Asfand Ali brings creative talent and design expertise to Triadic Media's projects. His work helps clients establish strong visual identities and connect with their target audiences.",
+      name: "Syed Ali Haider",
+      role: "CEO",
+      image: "/team/syed-ali-haider.png",
+      bio: "As the CEO of Triadic Marketing, Syed Ali Haider brings visionary leadership and strategic direction to the company. With a passion for digital innovation, he leads the team in delivering exceptional results for clients.",
+      socialLinks: [{ type: "instagram", url: "https://www.instagram.com/syed.ali.haider5/" }],
     },
   ]
 
-  // Business development team
+  // Business Development team
   const businessTeam = [
-    {
-      name: "Hamas Qazi",
-      role: "BDM Pakistan",
-      image: "/team/hamas-qazi.png",
-      bio: "Hamas Qazi leads business development efforts in Pakistan, connecting clients with Triadic Media's digital marketing solutions. His strategic approach helps businesses achieve their growth objectives.",
-      socialLinks: [{ type: "linkedin", url: "https://www.linkedin.com/in/hammasqazi/" }],
-    },
     {
       name: "Zavier Cobb",
       role: "USA Business Development",
-      image: "/team/xavier-cobb.png",
-      bio: "Zavier Cobb manages business development in the USA market, bringing Triadic Media's digital marketing expertise to American businesses looking to enhance their online presence and performance.",
+      image: "/team/zavier-cobb.png",
+      bio: "Zavier Cobb manages business development in the USA market, bringing Triadic Marketing's digital marketing expertise to American businesses looking to enhance their online presence and performance.",
     },
     {
       name: "Veronika",
-      role: "Business Development Manager",
-      image: "/team/vernoica.png",
-      bio: "Veronika drives business growth and client relationships at Triadic Media. Her strategic approach and understanding of digital marketing help clients achieve their business objectives.",
+      role: "UAE Business Development Manager",
+      image: "/team/veronika.png",
+      bio: "Veronika drives business growth and client relationships at Triadic Marketing in the UAE. Her strategic approach and understanding of digital marketing help clients achieve their business objectives.",
+    },
+    {
+      name: "Hamas Qazi",
+      role: "Pakistan Business Development Manager",
+      image: "/team/hamas-qazi.png",
+      bio: "Hamas Qazi leads business development efforts in Pakistan, connecting clients with Triadic Marketing's digital marketing solutions. His strategic approach helps businesses achieve their growth objectives.",
     },
   ]
 
-  // Content team
-  const contentTeam = [
+  // Marketing team
+  const marketingTeam = [
     {
       name: "Ashar Ali",
       role: "Performance Marketer",
@@ -403,10 +365,98 @@ export default function TeamPage() {
       bio: "Ashar Ali specializes in performance marketing, optimizing campaigns to deliver measurable results. His data-driven approach ensures clients achieve maximum ROI on their marketing investments.",
     },
     {
+      name: "Shehrayar Satti",
+      role: "Keyword Researcher",
+      image: "/team/shehrayar-satti.png",
+      bio: "Shehrayar Satti specializes in keyword research and SEO strategy, helping clients optimize their online presence for maximum visibility and engagement.",
+    },
+    {
+      name: "Asfand Ali",
+      role: "SEO Specialist",
+      image: "/team/asfand-ali.png",
+      bio: "Asfand Ali is an SEO expert who helps clients improve their search engine rankings and online visibility. His technical knowledge and strategic approach drive organic traffic growth.",
+    },
+  ]
+
+  // Developer team
+  const developerTeam = [
+    {
+      name: "Usman Arshad",
+      role: "Full Stack Website Developer | UI/UX Designer",
+      image: "/team/usman-arshad.png",
+      bio: "Usman Arshad leads web development at Triadic Marketing, bringing technical excellence and innovative solutions to every project. His expertise in both development and UI/UX design ensures clients receive cutting-edge digital experiences.",
+    },
+    {
+      name: "Amir Naqvi",
+      role: "Mobile Application Developer Head",
+      image: "/team/amir-naqvi.png",
+      bio: "Amir Naqvi leads mobile application development at Triadic Marketing, creating innovative and user-friendly apps that help clients connect with their audiences on mobile platforms.",
+    },
+  ]
+
+  // Designer team
+  const designerTeam = [
+    {
+      name: "Aqeel Ahmed",
+      role: "Graphic Designer",
+      image: "/team/aqeel-ahmed.png",
+      bio: "Aqeel Ahmed creates compelling visual content that captures attention and communicates brand messages effectively. His design skills contribute to the success of client campaigns across platforms.",
+    },
+    {
+      name: "Ayma Imtiaz",
+      role: "Designer Head",
+      image: "/team/ayma-imtiaz.png",
+      bio: "As Designer Head, Ayma Imtiaz brings creative direction and artistic vision to Triadic Marketing's projects. Her innovative approach ensures clients receive visually stunning and effective design solutions.",
+    },
+    {
+      name: "Alina Ahmed",
+      role: "Social Media Designer",
+      image: "/team/alina-ahmed.png",
+      bio: "Alina Ahmed specializes in creating engaging visual content for social media platforms, helping brands stand out in crowded feeds and connect with their target audiences.",
+    },
+  ]
+
+  // Content creators team
+  const contentTeam = [
+    {
+      name: "Qasim Ahmad",
+      role: "Content Writer",
+      image: "/team/qasim-ahmad.png",
+      bio: "Qasim Ahmad crafts compelling written content that engages audiences and drives action. His storytelling abilities help brands communicate their message effectively across various platforms.",
+    },
+    {
+      name: "Danish Ahmed",
+      role: "Cinematographer",
+      image: "/team/danish-ahmed.png",
+      bio: "Danish Ahmed brings a cinematic eye to video content, capturing stunning visuals that elevate brand storytelling and create memorable impressions.",
+    },
+    {
       name: "Saif Ahmed",
-      role: "Content Creator",
+      role: "D.O.P",
       image: "/team/saif-ahmed.png",
-      bio: "Saif Ahmed creates engaging content that resonates with target audiences. His creative storytelling helps brands connect with customers and build lasting relationships.",
+      bio: "Saif Ahmed, as Director of Photography, brings technical expertise and creative vision to video production, ensuring high-quality visual storytelling for clients.",
+    },
+  ]
+
+  // Video editors team
+  const videoTeam = [
+    {
+      name: "Hasham Yaseen",
+      role: "Video Designer",
+      image: "/team/hasham-yaseen.png",
+      bio: "Hasham Yaseen leads the video design team at Triadic Marketing, bringing creative vision and technical expertise to video content that engages and inspires audiences.",
+    },
+    {
+      name: "Daniyal Ahmed",
+      role: "3D Animator / Video Editor",
+      image: "/team/daniyal-ahmed.png",
+      bio: "Daniyal Ahmed specializes in 3D animation and video editing, creating dynamic visual content that brings brands to life and captures audience attention.",
+    },
+    {
+      name: "M Muneeb",
+      role: "CGI Animator / Video Editor",
+      image: "/team/m-muneeb.png",
+      bio: "M Muneeb combines CGI animation with video editing expertise to create cutting-edge visual content that pushes creative boundaries and delivers impressive results.",
     },
   ]
 
@@ -444,11 +494,14 @@ export default function TeamPage() {
               </motion.p>
             </motion.div>
 
-            {/* Team sections */}
+            {/* Team sections - Reordered as requested */}
             <TeamSection title="Leadership" members={leadershipTeam} />
-            <TeamSection title="Technical Team" members={technicalTeam} />
             <TeamSection title="Business Development" members={businessTeam} />
-            <TeamSection title="Content & Marketing" members={contentTeam} />
+            <TeamSection title="Marketing Team" members={marketingTeam} />
+            <TeamSection title="Developer Team" members={developerTeam} />
+            <TeamSection title="Designer Team" members={designerTeam} />
+            <TeamSection title="Content Creators Team" members={contentTeam} />
+            <TeamSection title="Video Editor's Team" members={videoTeam} />
           </div>
         </section>
 

@@ -17,10 +17,16 @@ export default function WhatsAppWidget() {
     return () => clearTimeout(timer)
   }, [])
 
+  const toggleWidget = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
     <AnimatePresence>
       {isVisible && (
-        <div className="fixed bottom-6 right-6 z-50">
+        <div
+          className={`fixed ${isOpen ? "bottom-24" : "bottom-6"} right-4 sm:right-6 z-50 transition-all duration-300 ease-in-out`}
+        >
           {/* Chat bubble */}
           <AnimatePresence>
             {isOpen && (
@@ -28,7 +34,7 @@ export default function WhatsAppWidget() {
                 initial={{ opacity: 0, y: 20, scale: 0.8 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 20, scale: 0.8 }}
-                className="mb-4 bg-white rounded-lg shadow-lg overflow-hidden w-72 md:w-80"
+                className="mb-4 bg-white rounded-lg shadow-lg overflow-hidden w-[280px] sm:w-72 md:w-80 max-w-[90vw]"
               >
                 <div className="bg-[#25D366] p-4 flex justify-between items-center">
                   <div className="flex items-center gap-2">
@@ -45,18 +51,22 @@ export default function WhatsAppWidget() {
                       <p className="text-xs opacity-90">We typically reply within minutes</p>
                     </div>
                   </div>
-                  <button onClick={() => setIsOpen(false)} className="text-white hover:bg-white/10 rounded-full p-1">
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="text-white hover:bg-white/10 rounded-full p-1"
+                    aria-label="Close chat"
+                  >
                     <X size={18} />
                   </button>
                 </div>
                 <div className="p-4 bg-[#E5DDD5]">
                   <div className="bg-white rounded-lg p-3 mb-3 inline-block max-w-[85%] shadow-sm">
-                    <p className="text-sm">👋 Hi there! How can we help you today?</p>
+                    <p className="text-sm text-black">👋 Hi there! How can we help you today?</p>
                     <p className="text-[10px] text-gray-500 text-right mt-1">11:32 AM</p>
                   </div>
                   <div className="flex justify-end">
                     <div className="bg-[#DCF8C6] rounded-lg p-3 inline-block max-w-[85%] shadow-sm">
-                      <p className="text-sm">I'm interested in your services</p>
+                      <p className="text-sm text-black">I'm interested in your services</p>
                       <p className="text-[10px] text-gray-500 text-right mt-1">11:33 AM</p>
                     </div>
                   </div>
@@ -79,8 +89,9 @@ export default function WhatsAppWidget() {
             animate={{ scale: 1, rotate: 0 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            onClick={() => setIsOpen(!isOpen)}
-            className="bg-[#25D366] text-white p-4 rounded-full shadow-lg flex items-center justify-center"
+            onClick={toggleWidget}
+            className="flex items-center justify-center w-14 h-14 rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+            aria-label={isOpen ? "Close WhatsApp chat" : "Open WhatsApp chat"}
           >
             {isOpen ? <X size={24} /> : <MessageCircle size={24} fill="white" className="text-[#25D366]" />}
           </motion.button>

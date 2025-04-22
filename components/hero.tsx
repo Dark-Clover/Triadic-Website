@@ -4,8 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import ScrollVelocity from "./scroll-velocity"
 import EnhancedButton from "./enhanced-button"
-import RevealOnScroll from "./scroll-reveal"
-import ImprovedTextReveal from "./improved-text-reveal"
+import { motion } from "framer-motion"
 
 export default function Hero() {
   const router = useRouter()
@@ -93,7 +92,7 @@ export default function Hero() {
           for (let j = i + 1; j < particles.length && connections < connectionsLimit; j++) {
             const dx = particle.x - particles[j].x
             const dy = particle.y - particles[j].y
-            const distance = Math.sqrt(dx * dx + dy * dy)
+            const distance = Math.sqrt(dx * dx)
 
             if (distance < 80) {
               // Reduced connection distance
@@ -121,7 +120,10 @@ export default function Hero() {
   }, [isMounted])
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-black">
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 overflow-hidden bg-black"
+    >
       <canvas ref={canvasRef} className="absolute inset-0 -z-10" />
 
       {/* Enhanced scroll velocity text in background - improved visibility */}
@@ -130,90 +132,107 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--accent-color)]/5 to-transparent"></div>
           <ScrollVelocity
             texts={["TRIADIC MEDIA", "DIGITAL EXCELLENCE", "INNOVATIVE DESIGN", "STRATEGIC MARKETING"]}
-            velocity={50}
+            velocity={40}
             className="font-bold text-9xl md:text-9xl lg:text-9xl tracking-wider text-shadow-lg"
             textColor="text-zinc-300/40"
             numCopies={6}
             velocityMapping={{ input: [0, 1000], output: [0, 5] }}
             scrollContainerRef={typeof window !== "undefined" ? window : undefined}
-            parallaxStyle={{ 
-              opacity: 0.5, 
-              letterSpacing: '0.05em',
-              background: 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%)',
-              margin: '30px 0',
-              padding: '20px 0'
+            parallaxStyle={{
+              opacity: 0.5,
+              letterSpacing: "0.05em",
+              background: "linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%)",
+              margin: "30px 0",
+              padding: "20px 0",
             }}
           />
         </div>
       )}
 
       <div className="container relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <RevealOnScroll direction="left" duration={0.8}>
-            <div className="flex flex-col gap-6">
-              <div className="inline-block bg-[var(--primary-color)]/20 px-4 py-2 rounded-full text-[var(--accent-color)] font-medium text-sm">
-                Digital Marketing Excellence
-              </div>
+        <div className="text-center max-w-4xl mx-auto">
+          <motion.h1
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            Digital Marketing <span className="text-gradient">Excellence</span>
+          </motion.h1>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter font-display text-white">
-                Elevate Your <span className="text-gradient">Digital</span> Presence
-              </h1>
-
-              {/* Text reveal animation */}
-              <div className="h-16 font-display">
-                <ImprovedTextReveal
-                  text="TRIADIC"
-                  className="text-5xl md:text-6xl"
-                  glitch={true}
-                  color="var(--accent-color)"
-                  highlightColor="var(--accent-color)"
-                />
-              </div>
-
-              <p className="text-lg text-gray-400 max-w-lg">
-                We transform brands through strategic digital marketing, innovative design, and cutting-edge technology
-                solutions.
-              </p>
-
-              <div className="flex flex-wrap gap-4 mt-8">
-                <EnhancedButton variant="primary" glitch={true} onClick={() => router.push("/contact")}>
-                  Join Us Today!
-                </EnhancedButton>
-
-                <EnhancedButton variant="outline" magneticPull={true} onClick={() => router.push("/services")}>
-                  Our Services
-                </EnhancedButton>
-              </div>
-            </div>
-          </RevealOnScroll>
-
-          <RevealOnScroll direction="right" duration={0.8} delay={0.2}>
-            <div className="relative">
-              <div className="relative z-10 bg-gradient-to-br from-[var(--primary-color)] to-[var(--accent-color)] rounded-2xl p-8 md:p-12 overflow-hidden shadow-[0_0_30px_rgba(var(--primary-color),0.3)]">
-                <div className="relative z-10 text-white">
-                  <h3 className="text-2xl font-bold mb-4">Triadic Media</h3>
-                  <p className="mb-6">Your partner for digital growth and innovation</p>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                      <div className="text-3xl font-bold">250+</div>
-                      <div className="text-sm opacity-80">Projects Completed</div>
-                    </div>
-                    <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                      <div className="text-3xl font-bold">98%</div>
-                      <div className="text-sm opacity-80">Client Satisfaction</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Decorative elements - reduced for performance and toned down */}
-              <div className="absolute -top-6 -right-6 w-24 h-24 bg-[var(--accent-color)] rounded-full blur-xl opacity-20" />
-              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[var(--secondary-color)] rounded-full blur-xl opacity-20" />
-            </div>
-          </RevealOnScroll>
+          <motion.p
+            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto px-4 sm:px-0"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+          >
+            Elevate your digital presence with our strategic marketing solutions tailored for your business growth.
+          </motion.p>
         </div>
+
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+        >
+          <EnhancedButton
+            variant="primary"
+            glitch={true}
+            className="px-6 py-3 text-sm sm:text-base"
+            onClick={() => router.push("/contact")}
+          >
+            Book a Consultation
+          </EnhancedButton>
+
+          <EnhancedButton
+            variant="outline"
+            magneticPull={true}
+            className="px-6 py-3 text-sm sm:text-base"
+            onClick={() => router.push("/services")}
+          >
+            Our Services
+          </EnhancedButton>
+        </motion.div>
       </div>
+
+      {/* Scroll Down Indicator */}
+      <motion.div
+        className="absolute bottom-10 left-0 right-0 mx-auto w-max z-10 cursor-pointer"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.8,
+          delay: 1.2,
+          repeat: Number.POSITIVE_INFINITY,
+          repeatType: "reverse",
+          repeatDelay: 0.2,
+        }}
+        onClick={() => {
+          window.scrollTo({
+            top: window.innerHeight,
+            behavior: "smooth",
+          })
+        }}
+      >
+        <div className="flex flex-col items-center">
+          <div className="w-8 h-12 border-2 border-white/50 rounded-full flex items-start justify-center p-1 mb-2">
+            <motion.div
+              className="w-1.5 h-1.5 bg-white rounded-full"
+              animate={{
+                y: [0, 15, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Number.POSITIVE_INFINITY,
+                repeatType: "loop",
+                ease: "easeInOut",
+              }}
+            />
+          </div>
+          <span className="text-white/70 text-sm font-light">Scroll Down</span>
+        </div>
+      </motion.div>
     </section>
   )
 }

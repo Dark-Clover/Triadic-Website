@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { useInView } from "framer-motion"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react"
 import RevealOnScroll from "./scroll-reveal"
 import EnhancedButton from "./enhanced-button"
 import { useRouter } from "next/navigation"
@@ -26,7 +26,6 @@ export default function Contact() {
       title: "Call Us",
       details: (
         <>
-          <div>+1 (678) 249-9484</div>
           <div>+971 56 299 7778</div>
           <div>+92 331 1148881</div>
         </>
@@ -57,16 +56,20 @@ export default function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           <RevealOnScroll direction="left">
-            <div className="bg-gray-900 p-8 rounded-2xl shadow-lg">
+            <div className="bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-lg">
               <h3 className="text-2xl font-bold mb-6 text-white">Send us a message</h3>
 
               <form className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-gray-300">
                       Full Name
                     </label>
-                    <Input id="name" placeholder="John Doe" className="bg-gray-800 border-gray-700 text-white" />
+                    <Input
+                      id="name"
+                      placeholder="John Doe"
+                      className="w-full px-4 py-3 text-base bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] text-white"
+                    />
                   </div>
 
                   <div className="space-y-2">
@@ -77,7 +80,7 @@ export default function Contact() {
                       id="email"
                       type="email"
                       placeholder="john@example.com"
-                      className="bg-gray-800 border-gray-700 text-white"
+                      className="w-full px-4 py-3 text-base bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] text-white"
                     />
                   </div>
                 </div>
@@ -89,7 +92,7 @@ export default function Contact() {
                   <Input
                     id="subject"
                     placeholder="How can we help you?"
-                    className="bg-gray-800 border-gray-700 text-white"
+                    className="w-full px-4 py-3 text-base bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] text-white"
                   />
                 </div>
 
@@ -104,10 +107,12 @@ export default function Contact() {
                   />
                 </div>
 
-                <EnhancedButton className="w-full" variant="primary" glitch={true}>
+                <button
+                  type="submit"
+                  className="w-full md:w-auto px-8 py-4 text-base font-medium bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color)]/90 transition-colors"
+                >
                   Send Message
-                  <Send className="ml-2 h-4 w-4" />
-                </EnhancedButton>
+                </button>
               </form>
             </div>
           </RevealOnScroll>
@@ -122,7 +127,7 @@ export default function Contact() {
 
                   <div>
                     <h4 className="font-medium text-white">{item.title}</h4>
-                    <p className="text-lg font-semibold text-gray-300">{item.details}</p>
+                    <p className="text-lg font-semibold text-gray-300 break-words">{item.details}</p>
                     <p className="text-sm text-gray-500">{item.description}</p>
                   </div>
                 </div>
@@ -130,7 +135,7 @@ export default function Contact() {
             ))}
 
             <RevealOnScroll delay={0.5} direction="up">
-              <div className="bg-[var(--primary-color)] text-white p-8 rounded-2xl mt-8">
+              <div className="bg-[var(--primary-color)] text-white p-6 sm:p-8 rounded-2xl mt-8">
                 <h3 className="text-2xl font-bold mb-4">Ready to get started?</h3>
                 <p className="mb-6">
                   Let's discuss your project and see how we can help you achieve your business goals.

@@ -88,7 +88,7 @@ export default function CaseStudies() {
           </div>
         </RevealOnScroll>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
           {caseStudies.map((study) => (
             <RevealOnScroll key={study.id} delay={0.1}>
               <motion.div
@@ -101,14 +101,14 @@ export default function CaseStudies() {
                 onClick={() => setActiveStudy(activeStudy === study.id ? null : study.id)}
                 whileHover={{ y: -5 }}
               >
-                <div className="p-6">
-                  <div className="mb-6 h-16 flex items-center justify-center">
+                <div className="p-5 sm:p-6">
+                  <div className="mb-6 h-12 sm:h-16 flex items-center justify-center">
                     <img
                       src={study.image || "/placeholder.svg"}
                       alt={study.client}
                       className="max-h-full max-w-full object-contain"
                       onError={(e) => {
-                        e.currentTarget.src = "/placeholder.svg?height=64&width=200&query=logo"
+                        e.currentTarget.src = "/abstract-geometric-logo.png"
                       }}
                     />
                   </div>
@@ -117,8 +117,8 @@ export default function CaseStudies() {
                     <div className="inline-block bg-[var(--accent-color)]/20 px-3 py-1 rounded-full text-[var(--accent-color)] text-xs font-medium">
                       {study.category}
                     </div>
-                    <h3 className="text-xl font-bold text-white">{study.title}</h3>
-                    <p className="text-gray-400 text-sm">{study.challenge}</p>
+                    <h3 className="text-lg sm:text-xl font-bold text-white">{study.title}</h3>
+                    <p className="text-gray-400 text-sm line-clamp-3">{study.challenge}</p>
                   </div>
 
                   <div className="mt-4 flex items-center justify-between">
@@ -134,10 +134,10 @@ export default function CaseStudies() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 20 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute inset-0 bg-gray-900/95 backdrop-blur-sm p-6 flex flex-col"
+                      className="absolute inset-0 bg-gray-900/95 backdrop-blur-sm p-4 sm:p-6 flex flex-col overflow-y-auto"
                     >
                       <button
-                        className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                        className="absolute top-2 right-2 text-gray-400 hover:text-white p-2"
                         onClick={(e) => {
                           e.stopPropagation()
                           setActiveStudy(null)

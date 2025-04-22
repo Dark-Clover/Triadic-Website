@@ -1,6 +1,7 @@
 import { Suspense } from "react"
 import InteractiveNavbar from "@/components/interactive-navbar"
 import ServicesShowcase from "@/components/services-showcase"
+import ServicesGrid from "@/components/services-grid"
 import Footer from "@/components/footer"
 import AnimatedBackground from "@/components/animated-background"
 
@@ -22,6 +23,11 @@ export default function ServicesPage() {
             <ServicesShowcase />
           </Suspense>
         </div>
+
+        {/* Added Services Grid */}
+        <Suspense fallback={<SectionLoading />}>
+          <ServicesGrid />
+        </Suspense>
 
         <Suspense fallback={<SectionLoading />}>
           <Footer />

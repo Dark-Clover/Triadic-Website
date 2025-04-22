@@ -124,7 +124,7 @@ export default function LoadingScreen() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                MEDIA
+                MARKETING
               </motion.div>
             </div>
 
@@ -153,7 +153,7 @@ export default function LoadingScreen() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2, duration: 0.3 }}
                     >
-                      DIGITAL EXCELLENCE
+                      MARKETING
                     </motion.div>
                   </div>
                 </motion.div>

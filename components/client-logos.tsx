@@ -9,7 +9,8 @@ export default function ClientLogos() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
-  // Client logos
+  // Replace the clientLogos array with this updated version that includes the milo logo
+
   const clientLogos = [
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/heart-of-europe-logo-WItVDvX8Zn0j1GYqETz4YGLWXWaWbV.png", // Heart of Europe
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blacksuit%20Logo%20White-iUwLNKJ9xle9FQ4517iRmEXnu8UWNM.png", // Blacksuit
@@ -23,7 +24,7 @@ export default function ClientLogos() {
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AK%20logo%20PNG-YH5uYeSnEcRfe5BLLkZlhL2t3CTDVc.png", // AK Technologies
     // New logos
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Reportage-Logo-ga152qJ92DXeKMGThjQewEMG62hn3e.png", // Reportage Logo
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/white%20copy---saefEmmQsGrHiVjduuaS8GdGb8cHAD.png", // White copy logo
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/milo-logo-qiFluH6qC5aeqUzn6lSFJJcgKZsNRn.png", // Milo logo
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Orange-2Ud4TDQlBsRq17nVpnoK5MEcbIrMZW.png", // Organic Magic logo
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/website-16sOdkcT4AKmx9ajaD8gKRJ9wAAOHD.png", // Gold geometric logo
     // Repeat logos to fill the grid
@@ -36,7 +37,7 @@ export default function ClientLogos() {
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/H2H%20logo%20bbrown%20heart%20only-WiSYWSKrIC8cldhk7G5XWg1YnxoTZQ.png",
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/badge%20png-BLllCGTJqMz0XqZysJvv19KiWMooJy.png",
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Reportage-Logo-ga152qJ92DXeKMGThjQewEMG62hn3e.png",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/white%20copy---saefEmmQsGrHiVjduuaS8GdGb8cHAD.png",
+    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/milo-logo-qiFluH6qC5aeqUzn6lSFJJcgKZsNRn.png", // Milo logo
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Orange-2Ud4TDQlBsRq17nVpnoK5MEcbIrMZW.png",
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/website-16sOdkcT4AKmx9ajaD8gKRJ9wAAOHD.png",
   ]

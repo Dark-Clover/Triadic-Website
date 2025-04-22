@@ -15,22 +15,40 @@ export default function InteractiveNavbar() {
   const router = useRouter()
 
   useEffect(() => {
+    // Set active tab based on current path when component mounts
+    const path = window.location.pathname
+    if (path === "/") {
+      setActiveTab("home")
+    } else if (path.startsWith("/services")) {
+      setActiveTab("services")
+    } else if (path.startsWith("/portfolio")) {
+      setActiveTab("portfolio")
+    } else if (path.startsWith("/about")) {
+      setActiveTab("about")
+    } else if (path.startsWith("/team")) {
+      setActiveTab("team")
+    } else if (path.startsWith("/contact")) {
+      setActiveTab("contact")
+    }
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
 
-      // Determine active section based on scroll position
-      const sections = ["home", "services", "about", "testimonials", "contact"]
-      const scrollPosition = window.scrollY + 100
+      // Only determine active section based on scroll position if we're on the home page
+      if (window.location.pathname === "/") {
+        const sections = ["home", "services", "about", "testimonials", "contact"]
+        const scrollPosition = window.scrollY + 100
 
-      for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
+        for (const section of sections) {
+          const element = document.getElementById(section)
+          if (element) {
+            const offsetTop = element.offsetTop
+            const offsetHeight = element.offsetHeight
 
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveTab(section)
-            break
+            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+              setActiveTab(section)
+              break
+            }
           }
         }
       }
@@ -43,6 +61,7 @@ export default function InteractiveNavbar() {
   const navItems = [
     { id: "home", name: "Home", href: "/" },
     { id: "services", name: "Services", href: "/services" },
+    { id: "portfolio", name: "Portfolio", href: "/portfolio" },
     { id: "about", name: "About", href: "/about" },
     { id: "team", name: "Team", href: "/team" },
     { id: "contact", name: "Contact", href: "/contact" },
@@ -51,33 +70,42 @@ export default function InteractiveNavbar() {
   const handleTabClick = (id: string, href: string) => {
     setActiveTab(id)
     setIsOpen(false)
-    window.scrollTo(0, 0) // Scroll to top before navigation
-    router.push(href)
-  }
 
-  const handleGetStarted = () => {
-    window.open("https://api.whatsapp.com/send/?phone=971562997778&text&type=phone_number&app_absent=0", "_blank")
+    // If we're already on the page, scroll to the section
+    if (window.location.pathname === href) {
+      const element = document.getElementById(id)
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop - 100,
+          behavior: "smooth",
+        })
+      }
+    } else {
+      // Otherwise navigate to the new page
+      window.scrollTo(0, 0) // Scroll to top before navigation
+      router.push(href)
+    }
   }
 
   return (
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
-        scrolled ? "bg-white/90 backdrop-blur-md py-3 shadow-sm" : "bg-transparent py-5",
+        scrolled ? "bg-white py-3 shadow-sm" : "bg-black/30 backdrop-blur-sm py-5",
       )}
     >
-      <div className="container flex items-center justify-between">
+      <div className="container px-4 sm:px-6 flex items-center justify-between">
         <Link href="/" className="relative z-50">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-2xl font-bold tracking-tighter text-[#4a0072]"
+            className="text-2xl font-bold tracking-tighter"
           >
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-I9R3yBX2NllxS44IWuaB6tSUJWmA4o.png"
+              src="/triadic-logo-new.png"
               alt="Triadic Media"
-              className="h-10"
+              className={cn("h-12 sm:h-14", scrolled ? "brightness-0" : "brightness-0 invert")}
             />
           </motion.div>
         </Link>
@@ -99,15 +127,19 @@ export default function InteractiveNavbar() {
                     handleTabClick(item.id, item.href)
                   }}
                   className={cn(
-                    "relative px-4 py-2 text-gray-700 hover:text-[#4a0072] transition-colors",
-                    activeTab === item.id && "text-[#4a0072] font-medium",
+                    "relative px-4 py-2 transition-colors",
+                    scrolled ? "text-gray-700 hover:text-[#4a0072]" : "text-white hover:text-white/80",
+                    activeTab === item.id && (scrolled ? "text-[#4a0072] font-medium" : "text-white font-medium"),
                   )}
                 >
                   {item.name}
                   {activeTab === item.id && (
                     <motion.span
                       layoutId="bubble"
-                      className="absolute inset-0 z-[-1] bg-[#4a0072]/10 rounded-full"
+                      className={cn(
+                        "absolute inset-0 z-[-1] rounded-full",
+                        scrolled ? "bg-[#4a0072]/10" : "bg-white/10",
+                      )}
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
@@ -134,8 +166,20 @@ export default function InteractiveNavbar() {
           </a>
         </motion.div>
 
-        <button className="md:hidden relative z-50" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X /> : <Menu />}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={cn(
+            "p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4a0072] md:hidden relative z-50",
+            scrolled ? "bg-gray-100" : "bg-white/40 backdrop-blur-sm",
+          )}
+          aria-expanded={isOpen}
+          aria-label="Toggle menu"
+        >
+          {isOpen ? (
+            <X className={scrolled ? "text-gray-900" : "text-white"} />
+          ) : (
+            <Menu className={scrolled ? "text-gray-900" : "text-white"} />
+          )}
         </button>
 
         {/* Mobile menu */}
@@ -146,27 +190,48 @@ export default function InteractiveNavbar() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: "100%" }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center"
+              className="fixed inset-0 bg-white z-50 flex flex-col"
             >
-              <div className="flex flex-col items-center gap-8">
-                {navItems.map((item) => (
-                  <a
-                    key={item.id}
-                    href={item.href}
-                    className="text-xl font-medium text-gray-800 hover:text-[#4a0072]"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      handleTabClick(item.id, item.href)
-                    }}
-                  >
-                    {item.name}
-                  </a>
-                ))}
+              <div className="flex justify-between items-center p-5 border-b border-gray-100">
+                <Link href="/" onClick={() => setIsOpen(false)}>
+                  <img src="/triadic-logo-new.png" alt="Triadic Media" className="h-12 brightness-0" />
+                </Link>
+                <button
+                  className="p-2 rounded-full hover:bg-gray-100"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close menu"
+                >
+                  <X className="h-6 w-6 text-gray-800" />
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-auto py-8">
+                <ul className="flex flex-col items-center gap-2">
+                  {navItems.map((item, index) => (
+                    <li key={index} className="w-full text-center border-b border-gray-100 last:border-0">
+                      <Link
+                        href={item.href}
+                        className="block px-4 py-4 text-lg text-gray-800 hover:text-[#4a0072] transition-colors"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          setIsOpen(false)
+                          handleTabClick(item.id, item.href)
+                        }}
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="p-5 border-t border-gray-100 flex justify-center">
                 <a
                   href="https://api.whatsapp.com/send/?phone=971562997778&text&type=phone_number&app_absent=0"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 bg-[#4a0072] hover:bg-[#3a0058] text-white px-6 py-2 rounded-full inline-block"
+                  className="bg-[#4a0072] hover:bg-[#3a0058] text-white px-6 py-3 rounded-full inline-block w-full text-center"
+                  onClick={() => setIsOpen(false)}
                 >
                   Book a Consultation
                 </a>

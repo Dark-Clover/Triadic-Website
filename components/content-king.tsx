@@ -1,120 +1,74 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
-import { motion, useInView } from "framer-motion"
-import { useRouter } from "next/navigation"
-import EnhancedButton from "./enhanced-button"
+import { motion } from "framer-motion"
+import { Instagram } from "lucide-react"
+import RevealOnScroll from "./scroll-reveal"
 
 export default function ContentKing() {
-  const router = useRouter()
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.3 })
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  // Auto-advance slides
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 4)
-    }, 4000)
-    return () => clearInterval(interval)
-  }, [])
-
-  // Array of fashion/lifestyle images for the slideshow
-  const slideImages = [
-    "/fashion-1.png",
-    "/fashion-2.png",
-    "/fashion-3.png",
-    "/fashion-4.png"
-  ]
-
   return (
-    <section
-      className="py-20 overflow-hidden bg-black relative"
-      ref={ref}
-      style={{
-        backgroundImage: "url('/travius.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      {/* Dark overlay to ensure text is readable */}
-      <div className="absolute inset-0 bg-black bg-opacity-70"></div>
-
-      <div className="container max-w-6xl mx-auto relative z-10">
-        <div className="relative">
-          {/* Glowing background effect - toned down */}
-          <div className="absolute inset-0 flex justify-center items-center">
-            <div className="w-[600px] h-[600px] rounded-full bg-[var(--accent-color)]/10 blur-[100px] opacity-30"></div>
-          </div>
-
-          <div className="flex flex-col items-center text-center relative z-10">
-            {/* Text with image fill */}
+    <section className="py-20 bg-black">
+      <div className="container">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <RevealOnScroll>
             <div className="relative">
-              {/* Background text outline for better visibility */}
-              <div className="absolute inset-0 filter blur-[2px]">
-                <h2 className="text-[8rem] md:text-[12rem] font-black tracking-tighter leading-none text-center font-display text-[var(--accent-color)]/20">
-                  CONTENT
-                </h2>
-                <h2 className="text-[8rem] md:text-[12rem] font-black tracking-tighter leading-none text-center font-display text-[var(--accent-color)]/20">
-                  IS KING
-                </h2>
-              </div>
+              <motion.div
+                className="relative z-10 rounded-2xl overflow-hidden border-2 border-[var(--accent-color)]/20 shadow-xl shadow-[var(--accent-color)]/10"
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  repeat: Number.POSITIVE_INFINITY,
+                  duration: 3,
+                  ease: "easeInOut",
+                }}
+              >
+                <img src="/syed-ali-haider-profile.png" alt="Syed Ali Haider" className="w-full h-auto rounded-2xl" />
+              </motion.div>
 
-              {/* Main text with background-clip for image masking */}
-              <div className="relative">
-                {/* The container for the text that will mask the images */}
-                <div 
-                  className="relative"
-                  style={{
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                    backgroundImage: `url(${slideImages[currentSlide]})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                >
-                  <h2 className="text-[8rem] md:text-[12rem] font-black tracking-tighter leading-none text-center font-display">
-                    CONTENT
-                  </h2>
-                  <h2 className="text-[8rem] md:text-[12rem] font-black tracking-tighter leading-none text-center font-display">
-                    IS KING
-                  </h2>
+              {/* Decorative elements */}
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--accent-color)] opacity-30 blur-xl z-0"></div>
+              <div className="absolute -top-6 -left-6 w-32 h-32 rounded-full bg-gradient-to-br from-[var(--accent-color)] to-[var(--primary-color)] opacity-20 blur-xl z-0"></div>
+            </div>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={0.2}>
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6 text-white">
+                Content is <span className="text-[var(--accent-color)]">King</span>
+              </h2>
+              <p className="text-gray-300 mb-8 text-lg">
+                In today's digital landscape, compelling content is the cornerstone of effective marketing. At Triadic
+                Media, we craft engaging, authentic content that resonates with your audience and drives meaningful
+                engagement.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6">
+                <div className="bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10">
+                  <h3 className="text-xl font-bold text-white mb-3">Strategic Content</h3>
+                  <p className="text-gray-400">
+                    We develop content strategies aligned with your business goals and audience needs.
+                  </p>
+                </div>
+                <div className="bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10">
+                  <h3 className="text-xl font-bold text-white mb-3">Multi-Channel Approach</h3>
+                  <p className="text-gray-400">
+                    Our content is optimized for various platforms to maximize reach and engagement.
+                  </p>
                 </div>
               </div>
+
+              <div className="mt-8 flex items-center gap-3">
+                <a
+                  href="https://www.instagram.com/triadicmarketing/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-white bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] px-4 py-2 rounded-full hover:opacity-90 transition-opacity"
+                >
+                  <Instagram size={18} />
+                  <span>Follow on Instagram</span>
+                </a>
+              </div>
             </div>
-
-            {/* Subtle animated underline */}
-            <motion.div
-              className="h-1 bg-gradient-to-r from-transparent via-[var(--accent-color)]/50 to-transparent w-[200px] mt-4"
-              animate={{
-                opacity: [0.2, 0.5, 0.2],
-                width: ["150px", "300px", "150px"],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Number.POSITIVE_INFINITY,
-                repeatType: "reverse",
-              }}
-            />
-
-            <motion.div
-              initial={{ y: 50, opacity: 0 }}
-              animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              className="mt-12"
-            >
-              <EnhancedButton
-                variant="primary"
-                className="rounded-full px-8 py-6 text-lg"
-                magneticPull={true}
-                onClick={() => router.push("/services")}
-              >
-                Our Services
-              </EnhancedButton>
-            </motion.div>
-          </div>
+          </RevealOnScroll>
         </div>
       </div>
     </section>

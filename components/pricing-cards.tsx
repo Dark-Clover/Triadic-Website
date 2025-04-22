@@ -19,9 +19,6 @@ interface PricingFeature {
 interface PricingTier {
   name: string
   popular?: boolean
-  beforePrice: string
-  price: string
-  period: string
   description?: string
   features: PricingFeature[]
   buttonText: string
@@ -33,9 +30,6 @@ export default function PricingCards() {
   const pricingTiers: PricingTier[] = [
     {
       name: "Starter",
-      beforePrice: "4000AED",
-      price: "2999AED",
-      period: "monthly",
       features: [
         { text: "Social media management (2 platforms)", included: true },
         { text: "1 Meta AD Setup", included: true },
@@ -48,9 +42,6 @@ export default function PricingCards() {
     {
       name: "Growth",
       popular: true,
-      beforePrice: "6400AED",
-      price: "4999AED",
-      period: "monthly",
       features: [
         { text: "Social media management (3 platforms)", included: true },
         { text: "Meta Ads, Tiktok Ads Setups/Campaigns", included: true },
@@ -64,9 +55,6 @@ export default function PricingCards() {
     },
     {
       name: "Pro Business",
-      beforePrice: "10000AED",
-      price: "7999AED",
-      period: "monthly",
       features: [
         { text: "Social media management (4 platforms)", included: true },
         { text: "Meta Ads, Tiktok Ads, YouTube Ads Setups/Campaigns", included: true },
@@ -81,9 +69,9 @@ export default function PricingCards() {
   ]
 
   return (
-    <section className="py-20 bg-black">
-      <div className="container">
-        <div className="text-center mb-16">
+    <section className="py-12 md:py-20 bg-black">
+      <div className="container px-4 md:px-6">
+        <div className="text-center mb-10 md:mb-16">
           <div className="mb-4 flex justify-center">
             <TrueFocus
               sentence="Choose Your Package"
@@ -93,16 +81,16 @@ export default function PricingCards() {
               glowColor="rgba(147, 51, 234, 0.6)"
               animationDuration={2}
               pauseBetweenAnimations={1}
-              className="text-white text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter"
+              className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter"
               highlightWords={{ Package: "var(--accent-color)" }}
             />
           </div>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-400 max-w-2xl mx-auto px-4">
             Select the perfect marketing package to elevate your brand's digital presence
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
           {pricingTiers.map((tier, index) => (
             <TiltCard key={index} tier={tier} onClick={() => router.push("/contact#contact-form")} />
           ))}
@@ -185,14 +173,8 @@ function TiltCard({ tier, onClick }: { tier: PricingTier; onClick: () => void })
       <div className="p-8 flex flex-col h-full">
         <div className="mb-6">
           <h3 className={cn("text-2xl font-bold mb-2", tier.popular ? "text-white" : "text-white")}>{tier.name}</h3>
-
-          <div className="flex items-baseline gap-2 mb-2">
-            <span className="text-gray-400 line-through text-sm">Before {tier.beforePrice}</span>
-            <span className="text-[var(--accent-color)] text-3xl font-bold">{tier.price}</span>
-            <span className="text-gray-400 text-sm">/{tier.period}</span>
-          </div>
-
-          {tier.description && <p className="text-gray-400 text-sm">{tier.description}</p>}
+          <p className="text-gray-400 text-sm">Contact us for custom pricing</p>
+          {tier.description && <p className="text-gray-400 text-sm mt-2">{tier.description}</p>}
         </div>
 
         <div className="space-y-4 mb-8 flex-grow">

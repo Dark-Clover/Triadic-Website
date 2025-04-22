@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/triadic-logo-new.png" />
         <meta name="theme-color" content="#2d0845" />
 
         {/* Add preload for critical resources */}
@@ -46,6 +46,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-import './globals.css'

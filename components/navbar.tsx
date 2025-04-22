@@ -46,6 +46,7 @@ export default function Navbar() {
       items: [
         { name: "Social Media Ads", href: "#", description: "Boost your online presence with captivating ads" },
         { name: "Website Development", href: "#", description: "Custom websites that convert visitors to customers" },
+        { name: "App Development", href: "#", description: "Custom mobile apps for iOS and Android" },
         { name: "SEO", href: "#", description: "Improve your search rankings and visibility" },
         { name: "Branding & Design", href: "#", description: "Create a memorable brand identity" },
         { name: "Google Ads", href: "#", description: "Targeted advertising that drives results" },
@@ -87,11 +88,7 @@ export default function Navbar() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-2xl font-bold tracking-tighter text-[#4a0072]"
           >
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-I9R3yBX2NllxS44IWuaB6tSUJWmA4o.png"
-              alt="Triadic Media"
-              className="h-10"
-            />
+            <img src="/triadic-header-logo.png" alt="Triadic" className="h-10" />
           </motion.div>
         </Link>
 
@@ -162,11 +159,15 @@ export default function Navbar() {
           </motion.div>
         </div>
 
-        <button className="md:hidden relative z-50" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X /> : <Menu />}
+        <button
+          className="md:hidden relative z-50 p-3"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+        >
+          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
 
-        {/* Mobile menu */}
+        {/* Mobile menu - improved */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -174,20 +175,74 @@ export default function Navbar() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: "100%" }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center"
+              className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center overflow-y-auto"
             >
-              <div className="flex flex-col items-center gap-8">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="text-xl font-medium text-gray-800 hover:text-[#4a0072]"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
+              <div className="flex flex-col items-center gap-6 w-full px-6">
+                {navItems.map((item, i) => (
+                  <div key={item.name} className="w-full">
+                    {item.dropdown ? (
+                      <div className="w-full">
+                        <button
+                          onClick={() => toggleDropdown(i)}
+                          className={cn(
+                            "flex items-center justify-between w-full py-3 text-xl font-medium text-gray-800 hover:text-[#4a0072] border-b border-gray-100",
+                            activeDropdown === i && "text-[#4a0072]",
+                          )}
+                        >
+                          {item.name}
+                          <ChevronDown
+                            className={cn(
+                              "h-5 w-5 transition-transform duration-200",
+                              activeDropdown === i && "rotate-180",
+                            )}
+                          />
+                        </button>
+
+                        <AnimatePresence>
+                          {activeDropdown === i && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="py-2 pl-4">
+                                {item.items.map((subItem, j) => (
+                                  <Link
+                                    key={j}
+                                    href={subItem.href}
+                                    className="block py-3 text-gray-600 hover:text-[#4a0072]"
+                                    onClick={() => {
+                                      setActiveDropdown(null)
+                                      setIsOpen(false)
+                                    }}
+                                  >
+                                    {subItem.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="block w-full py-3 text-xl font-medium text-gray-800 hover:text-[#4a0072] border-b border-gray-100"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </div>
                 ))}
-                <Button className="mt-4 bg-[#4a0072] hover:bg-[#3a0058]">Get Started</Button>
+                <Button
+                  className="mt-6 w-full bg-[#4a0072] hover:bg-[#3a0058] py-6 text-lg"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Get Started
+                </Button>
               </div>
             </motion.div>
           )}

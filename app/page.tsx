@@ -3,6 +3,7 @@ import LoadingScreen from "@/components/loading-screen"
 import InteractiveNavbar from "@/components/interactive-navbar"
 import AnimatedBackground from "@/components/animated-background"
 import ClientLogos from "@/components/client-logos"
+import ServicePhoneShowcase from "@/components/service-phone-showcase"
 import "./grid-motion.css"
 
 // Lazy load components for better performance
@@ -15,6 +16,7 @@ const CaseStudies = lazy(() => import("@/components/case-studies"))
 const HomeFAQ = lazy(() => import("@/components/home-faq"))
 const ServiceComparison = lazy(() => import("@/components/service-comparison"))
 const Footer = lazy(() => import("@/components/footer"))
+const TeamSlider = lazy(() => import("@/components/team-slider"))
 
 // Loading fallback component
 const SectionLoading = () => (
@@ -48,8 +50,17 @@ export default function Home() {
           <ClientLogos />
         </Suspense>
 
+        {/* Added ServicePhoneShowcase component with phone UI feature */}
+        <Suspense fallback={<SectionLoading />}>
+          <ServicePhoneShowcase />
+        </Suspense>
+
         <Suspense fallback={<SectionLoading />}>
           <CaseStudies />
+        </Suspense>
+
+        <Suspense fallback={<SectionLoading />}>
+          <TeamSlider />
         </Suspense>
 
         <Suspense fallback={<SectionLoading />}>

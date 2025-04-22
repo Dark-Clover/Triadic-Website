@@ -14,8 +14,16 @@ const SectionLoading = () => (
   </div>
 )
 
+// Define types for FAQ items
+interface FAQItemProps {
+  question: string
+  answer: string
+  isOpen: boolean
+  toggleOpen: () => void
+}
+
 // FAQ Item component
-const FAQItem = ({ question, answer, isOpen, toggleOpen }) => {
+const FAQItem = ({ question, answer, isOpen, toggleOpen }: FAQItemProps) => {
   return (
     <div className="border-b border-gray-800 last:border-0">
       <button
@@ -39,10 +47,16 @@ const FAQItem = ({ question, answer, isOpen, toggleOpen }) => {
   )
 }
 
-export default function FAQPage() {
-  const [openIndex, setOpenIndex] = useState(0)
+// Define type for FAQ data
+interface FAQItem {
+  question: string
+  answer: string
+}
 
-  const faqs = [
+export default function FAQPage() {
+  const [openIndex, setOpenIndex] = useState<number>(0)
+
+  const faqs: FAQItem[] = [
     {
       question: "Why is digital marketing important for my business?",
       answer:
@@ -75,7 +89,7 @@ export default function FAQPage() {
     },
   ]
 
-  const toggleFAQ = (index) => {
+  const toggleFAQ = (index: number): void => {
     setOpenIndex(openIndex === index ? -1 : index)
   }
 

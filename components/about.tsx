@@ -4,8 +4,11 @@ import { useRef } from "react"
 import { useInView } from "framer-motion"
 import { CheckCircle } from "lucide-react"
 import RevealOnScroll from "./scroll-reveal"
+import EnhancedButton from "./enhanced-button"
+import { useRouter } from "next/navigation"
 
 export default function About() {
+  const router = useRouter()
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
@@ -115,6 +118,45 @@ export default function About() {
             </div>
           </RevealOnScroll>
         </div>
+      </div>
+
+      {/* Viral marketing section with text and image side by side */}
+      <div className="container mt-20">
+        <RevealOnScroll>
+          <div className="bg-gray-900/50 rounded-2xl overflow-hidden shadow-xl border border-gray-800/50">
+            <div className="grid md:grid-cols-2 items-center">
+              <div className="p-8 md:p-12">
+                <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                  We Make Your Brand <span className="text-gradient">Go Viral</span>
+                </h3>
+                <p className="text-gray-300 mb-6">
+                  In today's fast-paced digital landscape, standing out is more challenging than ever. Our viral
+                  marketing strategies are designed to cut through the noise and create meaningful connections with your
+                  target audience.
+                </p>
+                <p className="text-gray-300 mb-8">
+                  We combine data-driven insights with creative storytelling to craft campaigns that resonate, engage,
+                  and inspire action. The result? Content that people can't help but share.
+                </p>
+                <EnhancedButton
+                  variant="primary"
+                  className="px-6 py-3"
+                  onClick={() => router.push("/services/social-media")}
+                >
+                  Explore Viral Marketing
+                </EnhancedButton>
+              </div>
+              <div className="relative h-full">
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent z-10 md:block hidden"></div>
+                <img
+                  src="/images/brand-viral-poster.png"
+                  alt="We Make Your Brand Go Viral"
+                  className="w-full h-full object-cover md:object-right"
+                />
+              </div>
+            </div>
+          </div>
+        </RevealOnScroll>
       </div>
     </section>
   )

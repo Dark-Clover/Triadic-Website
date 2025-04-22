@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 import type React from "react"
 import { useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { PhoneIcon, Globe, Search, Palette, Target, FileText } from "lucide-react"
+import { PhoneIcon, Globe, Search, Palette, Target, FileText, Smartphone } from "lucide-react"
 import RevealOnScroll from "./scroll-reveal"
 import EnhancedButton from "./enhanced-button"
 
@@ -47,8 +47,19 @@ export default function Services() {
         "https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.0.3",
     },
     {
-      id: "seo",
+      id: "app-dev",
       number: "03",
+      title: "App Development",
+      description:
+        "We create custom mobile applications for iOS and Android platforms that help businesses engage with their customers on the go. From concept to deployment, our app development team delivers intuitive, feature-rich applications that drive user engagement and business growth.",
+      icon: <Smartphone className="h-6 w-6" />,
+      color: "#4a0072",
+      image:
+        "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+    },
+    {
+      id: "seo",
+      number: "04",
       title: "SEO",
       description:
         "Enhance your search visibility effortlessly. From custom coding optimizations to strategic keyword integration and fast hosting setups, we ensure your site ranks higher, attracts organic traffic, and keeps visitors engaged.",
@@ -59,7 +70,7 @@ export default function Services() {
     },
     {
       id: "branding",
-      number: "04",
+      number: "05",
       title: "Branding & Design",
       description:
         "Create a memorable brand presence! We develop cohesive visual identities, set up domains and hosting, and customize everything to reflect your brand's essence, building a strong foundation for customer trust and recognition.",
@@ -70,7 +81,7 @@ export default function Services() {
     },
     {
       id: "google-ads",
-      number: "05",
+      number: "06",
       title: "Google Ads",
       description:
         "Maximize conversions with Google Ads. Our setup includes seamless hosting, fast-loading pages, and compelling ad copy that drives traffic to your site, helping you reach and engage your target audience effectively.",
@@ -81,7 +92,7 @@ export default function Services() {
     },
     {
       id: "content",
-      number: "06",
+      number: "07",
       title: "Content Creation",
       description:
         "Engage and inform with quality content. From blog posts to product descriptions, we craft content that speaks to your audience, optimizing for readability and SEO. Complete with domain and hosting support if needed.",
