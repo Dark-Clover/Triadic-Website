@@ -384,7 +384,7 @@ export default function TeamPage() {
       name: "Usman Arshad",
       role: "Full Stack Website Developer | UI/UX Designer",
       image: "/team/usman-arshad.png",
-      bio: "Usman Arshad leads web development at Triadic Marketing, bringing technical excellence and innovative solutions to every project. His expertise in both development and UI/UX design ensures clients receive cutting-edge digital experiences.",
+      bio: "Usman Arshad is an important member and senior developer at Triadic Marketing. He is also responsible for the development and designing of the awesome Triadic website. His expertise in both development and UI/UX design ensures clients receive cutting-edge digital experiences.",
     },
     {
       name: "Amir Naqvi",
