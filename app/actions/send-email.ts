@@ -1,4 +1,4 @@
-"use server"
+"\"use server"
 
 import { Resend } from "resend"
 
@@ -33,7 +33,7 @@ export async function sendEmail(formData: FormData): Promise<FormState> {
   try {
     // Send email using Resend
     const result = await resend.emails.send({
-      from: "Contact Form <contact@triadicmarketing.com>", // Replace with your verified domain email
+      from: "Contact Form <onboarding@resend.dev>", // You can update this once you verify your domain
       to: ["info@triadicmarketing.com"],
       subject: `Contact Form: ${subject}`,
       reply_to: email,

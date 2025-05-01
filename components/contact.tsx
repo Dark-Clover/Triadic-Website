@@ -9,7 +9,7 @@ import RevealOnScroll from "./scroll-reveal"
 import EnhancedButton from "./enhanced-button"
 import { useRouter } from "next/navigation"
 import { sendEmail } from "@/app/actions/send-email"
-import { useFormStatus } from "react-dom/client"
+import { useFormStatus } from "react-dom"
 
 function SubmitButton() {
   const { pending } = useFormStatus()
@@ -110,7 +110,7 @@ export default function Contact() {
                 </div>
               )}
 
-              <form ref={formRef} action={(formData) => handleSubmit(formData)} className="space-y-6">
+              <form ref={formRef} action={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-gray-300">
