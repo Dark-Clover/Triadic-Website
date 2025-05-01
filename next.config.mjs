@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove the static export option
+  // Remove any output configuration
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -8,11 +8,10 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['v0.dev'],
     unoptimized: true,
   },
-  // This ensures the "out" directory is used for the build
-  distDir: process.env.BUILD_DIR || '.next',
+  // Remove the distDir configuration as it's causing issues
+  // distDir: process.env.BUILD_DIR || '.next',
 }
 
 export default nextConfig
