@@ -1,18 +1,52 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { useInView } from "framer-motion"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin, Loader2, CheckCircle, AlertCircle } from "lucide-react"
 import RevealOnScroll from "./scroll-reveal"
 import EnhancedButton from "./enhanced-button"
 import { useRouter } from "next/navigation"
+import { sendEmail } from "@/app/actions/send-email"
+import { useFormStatus } from "react-dom"
+
+function SubmitButton() {
+  const { pending } = useFormStatus()
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="w-full md:w-auto px-8 py-4 text-base font-medium bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color)]/90 transition-colors disabled:opacity-70"
+    >
+      {pending ? (
+        <span className="flex items-center gap-2">
+          <Loader2 className="h-4 w-4 animate-spin" />
+          Sending...
+        </span>
+      ) : (
+        "Send Message"
+      )}
+    </button>
+  )
+}
 
 export default function Contact() {
   const router = useRouter()
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const [formState, setFormState] = useState<{ success?: boolean; message?: string }>({})
+  const formRef = useRef<HTMLFormElement>(null)
+
+  async function handleSubmit(formData: FormData) {
+    const result = await sendEmail(formData)
+    setFormState(result)
+
+    if (result.success && formRef.current) {
+      formRef.current.reset()
+    }
+  }
 
   const contactInfo = [
     {
@@ -35,7 +69,7 @@ export default function Contact() {
     {
       icon: <MapPin className="h-5 w-5" />,
       title: "Visit Us",
-      details: "United Arab Emirates",
+      details: "Dubai, United Arab Emirates",
       description: "Book an appointment first",
     },
   ]
@@ -59,7 +93,24 @@ export default function Contact() {
             <div className="bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-lg">
               <h3 className="text-2xl font-bold mb-6 text-white">Send us a message</h3>
 
-              <form className="space-y-6">
+              {formState.message && (
+                <div
+                  className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
+                    formState.success
+                      ? "bg-green-900/30 text-green-300 border border-green-800"
+                      : "bg-red-900/30 text-red-300 border border-red-800"
+                  }`}
+                >
+                  {formState.success ? (
+                    <CheckCircle className="h-5 w-5 text-green-400" />
+                  ) : (
+                    <AlertCircle className="h-5 w-5 text-red-400" />
+                  )}
+                  {formState.message}
+                </div>
+              )}
+
+              <form ref={formRef} action={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-gray-300">
@@ -67,8 +118,10 @@ export default function Contact() {
                     </label>
                     <Input
                       id="name"
+                      name="name"
                       placeholder="John Doe"
                       className="w-full px-4 py-3 text-base bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] text-white"
+                      required
                     />
                   </div>
 
@@ -78,9 +131,11 @@ export default function Contact() {
                     </label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="john@example.com"
                       className="w-full px-4 py-3 text-base bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] text-white"
+                      required
                     />
                   </div>
                 </div>
@@ -91,8 +146,10 @@ export default function Contact() {
                   </label>
                   <Input
                     id="subject"
+                    name="subject"
                     placeholder="How can we help you?"
                     className="w-full px-4 py-3 text-base bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] text-white"
+                    required
                   />
                 </div>
 
@@ -102,17 +159,14 @@ export default function Contact() {
                   </label>
                   <Textarea
                     id="message"
+                    name="message"
                     placeholder="Tell us about your project..."
                     className="min-h-[150px] bg-gray-800 border-gray-700 text-white"
+                    required
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full md:w-auto px-8 py-4 text-base font-medium bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color)]/90 transition-colors"
-                >
-                  Send Message
-                </button>
+                <SubmitButton />
               </form>
             </div>
           </RevealOnScroll>

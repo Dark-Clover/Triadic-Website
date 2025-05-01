@@ -61,7 +61,8 @@
     "@emotion/is-prop-valid": "latest",
     "framer-motion": "latest",
     "gsap": "latest",
-    "@react-spring/web": "latest"
+    "@react-spring/web": "latest",
+    "resend": "latest"
   },
   "devDependencies": {
     "@types/node": "^22",
