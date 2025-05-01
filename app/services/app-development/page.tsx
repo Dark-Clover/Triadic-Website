@@ -12,7 +12,7 @@ export default function AppDevelopmentPage() {
       description="We create custom mobile applications for iOS and Android platforms that help businesses engage with their customers on the go. From concept to deployment, our app development team delivers intuitive, feature-rich applications."
       color="#00a86b"
       icon={<Smartphone className="w-6 h-6 text-white" />}
-      heroImage="/sustainable-app-interface.png"
+      heroImage="/services/app-dev.png"
       benefits={[
         "Extend your reach to mobile users",
         "Provide personalized user experiences",

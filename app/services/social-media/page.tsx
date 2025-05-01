@@ -12,7 +12,7 @@ export default function SocialMediaPage() {
       description="Boost your online presence with strategic social media management and captivating ads that bring your brand's unique voice to social media seamlessly."
       color="#4a0072"
       icon={<PhoneIcon className="w-6 h-6 text-white" />}
-      heroImage="/purple-social-abstract.png"
+      heroImage="/services/social-media-marketing.png"
       benefits={[
         "Increase brand awareness and recognition",
         "Drive targeted traffic to your website",

@@ -12,7 +12,7 @@ export default function SEOPage() {
       description="Boost your online visibility with our data-driven SEO strategies that improve your search rankings and drive targeted organic traffic to your website."
       color="#ff6b00"
       icon={<Search className="w-6 h-6 text-white" />}
-      heroImage="/seo-orange-analytics.png"
+      heroImage="/services/seo.png"
       benefits={[
         "Increase organic search visibility",
         "Drive targeted traffic to your website",

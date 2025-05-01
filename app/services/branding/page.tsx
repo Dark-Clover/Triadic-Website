@@ -12,7 +12,7 @@ export default function BrandingPage() {
       description="Create a memorable brand identity that resonates with your target audience and sets you apart from competitors. Our branding services help you establish a cohesive visual presence across all touchpoints."
       color="#e94057"
       icon={<Palette className="w-6 h-6 text-white" />}
-      heroImage="/vibrant-gradient-branding.png"
+      heroImage="/services/branding-and-design.png"
       benefits={[
         "Establish a distinctive brand identity",
         "Build trust and credibility with your audience",

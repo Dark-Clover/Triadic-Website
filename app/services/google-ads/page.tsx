@@ -12,7 +12,7 @@ export default function GoogleAdsPage() {
       description="Drive targeted traffic and increase conversions with our data-driven Google Ads campaigns. We create, manage, and optimize paid search campaigns that deliver measurable results for your business."
       color="#4285F4"
       icon={<Target className="w-6 h-6 text-white" />}
-      heroImage="/interconnected-blue-network.png"
+      heroImage="/services/google-ads.png"
       benefits={[
         "Generate immediate traffic to your website",
         "Target users actively searching for your products/services",

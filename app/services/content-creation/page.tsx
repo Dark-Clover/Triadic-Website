@@ -12,7 +12,7 @@ export default function ContentCreationPage() {
       description="Engage your audience with compelling content that tells your brand story and drives meaningful connections. Our content creation services span written, visual, and interactive formats tailored to your brand voice."
       color="#2e7d32"
       icon={<FileText className="w-6 h-6 text-white" />}
-      heroImage="/verdant-content-studio.png"
+      heroImage="/services/content-creation.png"
       benefits={[
         "Establish thought leadership in your industry",
         "Improve search engine rankings with quality content",
