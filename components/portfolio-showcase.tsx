@@ -277,43 +277,6 @@ export default function PortfolioShowcase() {
                   transition={{ duration: 0.4 }}
                 />
               </Link>
-
-              <a
-                href="/triadic-marketing-overview.pdf"
-                download
-                className="group relative overflow-hidden rounded-full bg-white px-8 py-4 text-[#4a0072] font-medium text-lg hover:bg-white/90 transition-all duration-300 flex items-center gap-2"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Download Brochure
-                  <motion.span
-                    animate={{ y: [0, -3, 0] }}
-                    transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="lucide lucide-download"
-                    >
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                      <polyline points="7 10 12 15 17 10"></polyline>
-                      <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                  </motion.span>
-                </span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-[#9c27b0]/10 to-[#4a0072]/10"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.4 }}
-                />
-              </a>
             </motion.div>
           </motion.div>
         </div>
