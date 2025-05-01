@@ -32,7 +32,7 @@ export async function sendEmail(formData: FormData): Promise<FormState> {
 
   try {
     // Send email using Resend
-    const { data, error } = await resend.emails.send({
+    const result = await resend.emails.send({
       from: "Contact Form <contact@triadicmarketing.com>", // Replace with your verified domain email
       to: ["info@triadicmarketing.com"],
       subject: `Contact Form: ${subject}`,
@@ -47,8 +47,8 @@ export async function sendEmail(formData: FormData): Promise<FormState> {
   `,
     })
 
-    if (error) {
-      console.error("Error sending email:", error)
+    if (result.error) {
+      console.error("Error sending email:", result.error)
       return {
         success: false,
         message: "Failed to send message. Please try again later.",
