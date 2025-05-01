@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useRef, useState } from "react"
 import { useInView } from "framer-motion"
 import { Input } from "@/components/ui/input"
@@ -9,42 +11,39 @@ import RevealOnScroll from "./scroll-reveal"
 import EnhancedButton from "./enhanced-button"
 import { useRouter } from "next/navigation"
 import { sendEmail } from "@/app/actions/send-email"
-import { useFormStatus } from "react-dom"
-
-function SubmitButton() {
-  const { pending } = useFormStatus()
-
-  return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="w-full md:w-auto px-8 py-4 text-base font-medium bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color)]/90 transition-colors disabled:opacity-70"
-    >
-      {pending ? (
-        <span className="flex items-center gap-2">
-          <Loader2 className="h-4 w-4 animate-spin" />
-          Sending...
-        </span>
-      ) : (
-        "Send Message"
-      )}
-    </button>
-  )
-}
 
 export default function Contact() {
   const router = useRouter()
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formState, setFormState] = useState<{ success?: boolean; message?: string }>({})
   const formRef = useRef<HTMLFormElement>(null)
 
-  async function handleSubmit(formData: FormData) {
-    const result = await sendEmail(formData)
-    setFormState(result)
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setIsSubmitting(true)
 
-    if (result.success && formRef.current) {
-      formRef.current.reset()
+    try {
+      const formData = new FormData(e.currentTarget)
+      console.log("Submitting form...")
+
+      const result = await sendEmail(formData)
+      console.log("Form submission result:", result)
+
+      setFormState(result)
+
+      if (result.success && formRef.current) {
+        formRef.current.reset()
+      }
+    } catch (error) {
+      console.error("Error in form submission:", error)
+      setFormState({
+        success: false,
+        message: "An unexpected error occurred. Please try again later.",
+      })
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -110,7 +109,7 @@ export default function Contact() {
                 </div>
               )}
 
-              <form ref={formRef} action={handleSubmit} className="space-y-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-gray-300">
@@ -166,7 +165,20 @@ export default function Contact() {
                   />
                 </div>
 
-                <SubmitButton />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full md:w-auto px-8 py-4 text-base font-medium bg-[var(--accent-color)] text-white rounded-lg hover:bg-[var(--accent-color)]/90 transition-colors disabled:opacity-70"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Sending...
+                    </span>
+                  ) : (
+                    "Send Message"
+                  )}
+                </button>
               </form>
             </div>
           </RevealOnScroll>
