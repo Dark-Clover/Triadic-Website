@@ -1,9 +1,7 @@
 import type React from "react"
 import "./globals.css"
 import "./team.css"
-import ScrollToTop from "@/components/scroll-to-top"
-// Import the WhatsApp widget
-import WhatsAppWidget from "@/components/whatsapp-widget"
+import ClientLayout from "./client-layout"
 
 export const metadata = {
   title: "Triadic Media - Digital Marketing Excellence",
@@ -13,7 +11,6 @@ export const metadata = {
     generator: 'v0.dev'
 }
 
-// Add the WhatsAppWidget component just before the closing body tag
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,7 +21,7 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.png" className="favicon-zoom" />
         <meta name="theme-color" content="#2d0845" />
 
         {/* Add preload for critical resources */}
@@ -39,9 +36,7 @@ export default function RootLayout({
         <meta name="author" content="Triadic Media" />
       </head>
       <body>
-        <ScrollToTop />
-        {children}
-        <WhatsAppWidget />
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   )

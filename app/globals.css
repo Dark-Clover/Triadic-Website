@@ -632,3 +632,21 @@ textarea {
     gap: 1rem;
   }
 }
+
+/* SVG Icon Zoom Effect */
+.svg-icon {
+  transition: transform 0.3s ease;
+}
+
+.svg-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Apply to all SVG icons in the site */
+svg {
+  transition: transform 0.3s ease;
+}
+
+svg:hover {
+  transform: scale(1.2);
+}
