@@ -68,7 +68,7 @@ export default function Contact() {
     {
       icon: <MapPin className="h-5 w-5" />,
       title: "Visit Us",
-      details: "Dubai, United Arab Emirates",
+      details: "DHA Phase-2",
       description: "Book an appointment first",
     },
   ]
