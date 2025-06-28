@@ -190,14 +190,14 @@ const TeamMember = ({ member, index, onClick }) => {
       >
         <div className="relative aspect-[3/4] overflow-hidden">
           {/* Background gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black z-10" />
+          {/* Removed: <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black z-10" /> */}
 
           {/* Image */}
-          <motion.div
+          {/* Removed: <motion.div
             className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)] to-[var(--accent-color)] opacity-20"
             animate={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-          />
+          /> */}
 
           {member.image ? (
             <motion.img
@@ -251,13 +251,13 @@ const TeamMember = ({ member, index, onClick }) => {
           </div>
 
           {/* Hover overlay */}
-          <motion.div
+          {/* Removed: <motion.div
             className="absolute inset-0 bg-gradient-to-t from-[var(--accent-color)]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             style={{
               transformStyle: "preserve-3d",
               transform: "translateZ(10px)",
             }}
-          />
+          /> */}
 
           {/* View details button */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30">

@@ -68,7 +68,16 @@ export default function Contact() {
     {
       icon: <MapPin className="h-5 w-5" />,
       title: "Visit Us",
-      details: "DHA Phase-2",
+      details: (
+        <a
+          href="https://www.google.com/maps/place/33%C2%B031'19.2%22N+73%C2%B009'14.8%22E/@33.5220934,73.1538162,21z/data=!4m5!3m4!4b1!8m2!3d33.5220032!4d73.1541138?hl=en&entry=ttu&g_ep=EgoyMDI1MDYyMy4yIKXMDSoASAFQAw%3D%3D"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
+          Westeria Rd, Sector A DHA Phase II, Islamabad, 45700
+        </a>
+      ),
       description: "Book an appointment first",
     },
   ]

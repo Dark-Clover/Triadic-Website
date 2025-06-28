@@ -170,43 +170,6 @@ export default function ModernAbout() {
           </RevealOnScroll>
         </div>
       </div>
-
-      {/* Side-by-side viral marketing banner */}
-      <section className="w-full py-16 my-12">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center bg-gradient-to-r from-gray-900 to-black rounded-2xl overflow-hidden shadow-2xl border border-gray-800">
-            <div className="p-8 md:p-12">
-              <RevealOnScroll direction="left">
-                <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white font-display">
-                  We Make Your <span className="text-gradient">Brand Go Viral</span>
-                </h3>
-                <p className="text-white/80 text-lg mb-6">
-                  Our viral marketing strategies combine creativity, data-driven insights, and cutting-edge techniques
-                  to create content that resonates with your audience and spreads organically across social platforms.
-                </p>
-                <p className="text-white/80 text-lg mb-8">
-                  We've helped brands achieve exponential growth through strategic viral campaigns that capture
-                  attention and drive engagement.
-                </p>
-                <button
-                  className="bg-white text-[var(--primary-color)] px-6 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all"
-                  onClick={() => router.push("/services/social-media")}
-                >
-                  Learn More
-                </button>
-              </RevealOnScroll>
-            </div>
-            <div className="relative h-full">
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent z-10"></div>
-              <img
-                src="/images/brand-viral-poster.png"
-                alt="We Make Your Brand Go Viral"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
     </section>
   )
 }
