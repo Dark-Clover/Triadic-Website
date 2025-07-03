@@ -37,7 +37,7 @@ export default function CaseStudies() {
         "150% growth in website traffic",
         "75% increase in online inquiries",
       ],
-      link: "https://www.instagram.com/heart2heart.ae/",
+      link: "https://www.instagram.com/syed.ali.haider5/",
     },
     {
       id: "kingsmen-real-estate",
@@ -70,7 +70,7 @@ export default function CaseStudies() {
         "350% growth in engagement with luxury audience segments",
         "Featured in top luxury publications",
       ],
-      link: "https://www.instagram.com/blacksuit/",
+      link: "https://www.instagram.com/blacksuitems.ae/",
     },
   ]
 
@@ -193,7 +193,7 @@ export default function CaseStudies() {
         </div>
 
         <div className="mt-12 text-center">
-          <a href="/contact" className="inline-flex items-center text-[var(--accent-color)] hover:underline">
+          <a href="/portfolio" className="inline-flex items-center text-[var(--accent-color)] hover:underline">
             View all case studies <ArrowRight className="ml-1 h-4 w-4" />
           </a>
         </div>

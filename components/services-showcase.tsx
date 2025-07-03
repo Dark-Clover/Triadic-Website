@@ -514,13 +514,7 @@ export default function ServicesShowcase() {
           </div>
         </RevealOnScroll>
 
-        <div className="mb-20">
-          <RevealOnScroll>
-            <div className="h-[400px] bg-[var(--primary-color)] rounded-2xl overflow-hidden">
-              <FlowingMenu items={flowingMenuItems} onItemClick={(id) => setActiveService(id)} />
-            </div>
-          </RevealOnScroll>
-        </div>
+        
 
         {/* Services content that appears when a tab is clicked */}
         {activeServiceData && (

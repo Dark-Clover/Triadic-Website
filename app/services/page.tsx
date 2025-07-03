@@ -4,6 +4,7 @@ import ServicesShowcase from "@/components/services-showcase"
 import ServicesGrid from "@/components/services-grid"
 import Footer from "@/components/footer"
 import AnimatedBackground from "@/components/animated-background"
+import FlowingMenu from "@/components/flowing-menu" // Import FlowingMenu
 
 // Loading fallback component
 const SectionLoading = () => (
@@ -13,6 +14,31 @@ const SectionLoading = () => (
 )
 
 export default function ServicesPage() {
+  const flowingMenuItems = [
+    {
+      link: "#web-development",
+      text: "Web Development",
+      image: "/web-development-showcase.png",
+      id: "web-development",
+    },
+    {
+      link: "#app-development",
+      text: "App Development",
+      image: "/app-development-showcase.png",
+      id: "app-development",
+    },
+    { link: "#social-media", text: "Social Media", image: "/social-media-showcase.png", id: "social-media" },
+    { link: "#seo", text: "SEO", image: "/services/seo.png", id: "seo" },
+    { link: "#branding", text: "Branding", image: "/services/branding-and-design.png", id: "branding" },
+    { link: "#google-ads", text: "Google Ads", image: "/services/google-ads.png", id: "google-ads" },
+    {
+      link: "#content-creation",
+      text: "Content Creation",
+      image: "/services/content-creation.png",
+      id: "content-creation",
+    },
+  ]
+
   return (
     <AnimatedBackground>
       <main className="min-h-screen bg-black overflow-hidden">
@@ -28,6 +54,11 @@ export default function ServicesPage() {
         <Suspense fallback={<SectionLoading />}>
           <ServicesGrid />
         </Suspense>
+
+        {/* Moved Flowing Menu to the bottom */}
+        <section className="w-full h-[80vh] md:h-[100vh] flex items-center justify-center bg-black text-white">
+          <FlowingMenu items={flowingMenuItems} />
+        </section>
 
         <Suspense fallback={<SectionLoading />}>
           <Footer />
