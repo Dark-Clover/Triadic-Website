@@ -1,7 +1,9 @@
-import Image from "next/image"
-import type { Metadata } from "next"
-import { Poppins } from "next/font/google"
-import { FaReact, FaNodeJs, FaPython, FaDatabase, FaServer, FaMobileAlt, FaCode } from "react-icons/fa"
+"use client"
+
+import ServicePage from "@/components/service-page"
+import { Globe, Smartphone, LineChart, Shield, Zap, Server, Palette } from "lucide-react"
+import RevealOnScroll from "@/components/scroll-reveal"
+import { FaReact, FaNodeJs, FaPython } from "react-icons/fa"
 import {
   SiJavascript,
   SiTypescript,
@@ -11,132 +13,103 @@ import {
   SiMysql,
   SiDocker,
   SiKubernetes,
-  SiAmazonaws,
-  SiGooglecloud,
-  SiAzuredevops,
 } from "react-icons/si"
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-})
-
-export const metadata: Metadata = {
-  title: "Web Development Services | Your Company",
-  description:
-    "Professional web development services tailored to your needs. We build responsive, scalable, and high-performance web applications.",
-}
 
 const WebDevelopmentPage = () => {
   return (
-    <div className="bg-gray-50">
-      {/* Hero Section */}
-      <section className="py-24 bg-gradient-to-r from-blue-100 to-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h1 className={`text-4xl md:text-5xl font-bold text-gray-800 mb-4 ${poppins.className}`}>
-                Crafting Exceptional Web Experiences
-              </h1>
-              <p className={`text-lg text-gray-600 mb-6 ${poppins.className}`}>
-                We specialize in building modern, scalable, and user-friendly web applications that drive results.
-              </p>
-              <a
-                href="/contact"
-                className="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Get a Free Quote
-              </a>
+    <ServicePage
+      title="Website Development"
+      description="We specialize in website design and development, creating beautiful, functional sites that convert visitors into customers. From WordPress to custom coding, we handle everything from domain setup to launch."
+      color="#0062cc"
+      icon={<Globe className="w-6 h-6 text-white" />}
+      heroImage="/digital-code-overlay.png"
+      benefits={[
+        "Establish a professional online presence",
+        "Provide 24/7 accessibility to your business",
+        "Build credibility and trust with customers",
+        "Generate leads and drive sales",
+        "Showcase your products and services",
+        "Improve search engine visibility",
+        "Gain competitive advantage",
+      ]}
+      features={[
+        {
+          title: "Custom Design",
+          description: "Unique, brand-aligned websites designed specifically for your business needs and goals.",
+          icon: <Palette className="w-5 h-5 text-[#0062cc]" />,
+        },
+        {
+          title: "Responsive Development",
+          description: "Mobile-friendly websites that provide exceptional user experience across all devices.",
+          icon: <Smartphone className="w-5 h-5 text-[#0062cc]" />,
+        },
+        {
+          title: "Performance Optimization",
+          description: "Lightning-fast loading speeds and smooth functionality for maximum user retention.",
+          icon: <Zap className="w-5 h-5 text-[#0062cc]" />,
+        },
+        {
+          title: "SEO Integration",
+          description: "Built-in search engine optimization to improve visibility and organic traffic.",
+          icon: <LineChart className="w-5 h-5 text-[#0062cc]" />,
+        },
+        {
+          title: "Security Implementation",
+          description: "Robust security measures to protect your website and user data from threats.",
+          icon: <Shield className="w-5 h-5 text-[#0062cc]" />,
+        },
+        {
+          title: "Hosting & Maintenance",
+          description: "Reliable hosting solutions and ongoing maintenance to keep your site running smoothly.",
+          icon: <Server className="w-5 h-5 text-[#0062cc]" />,
+        },
+      ]}
+      process={[
+        {
+          step: "Discover",
+          title: "Requirements Gathering",
+          description:
+            "We learn about your business, goals, target audience, and specific requirements for your website.",
+        },
+        {
+          step: "Design",
+          title: "UI/UX Planning",
+          description:
+            "Our designers create wireframes and mockups to visualize the layout and aesthetic of your site.",
+        },
+        {
+          step: "Develop",
+          title: "Frontend & Backend Coding",
+          description:
+            "Our developers bring the designs to life with clean, efficient code and powerful functionality.",
+        },
+        {
+          step: "Test",
+          title: "Quality Assurance",
+          description: "Rigorous testing across devices and browsers to ensure everything works flawlessly.",
+        },
+        {
+          step: "Launch",
+          title: "Deployment",
+          description: "We handle the technical aspects of launching your site and ensuring it's properly indexed.",
+        },
+        {
+          title: "Support",
+          description:
+            "Regular updates, security patches, and performance optimizations to keep your site running smoothly.",
+        },
+      ]}
+    >
+      {/* Custom Tech Stack Section */}
+      <section className="py-20">
+        <div className="container max-w-7xl mx-auto">
+          <RevealOnScroll>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold mb-4">Our Web Technology Stack</h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#0062cc] to-transparent mx-auto"></div>
             </div>
-            <div>
-              <Image
-                src="/images/web-development-hero.svg"
-                alt="Web Development Illustration"
-                width={500}
-                height={400}
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+          </RevealOnScroll>
 
-      {/* Services Offered Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className={`text-3xl font-semibold text-gray-800 text-center mb-8 ${poppins.className}`}>
-            Our Web Development Services
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Service Card 1 */}
-            <div className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-              <FaReact className="text-4xl text-blue-500 mb-4" />
-              <h3 className={`text-xl font-semibold text-gray-700 mb-2 ${poppins.className}`}>Front-End Development</h3>
-              <p className={`text-gray-600 ${poppins.className}`}>
-                We build engaging user interfaces using modern frameworks like React, Angular, and Vue.js.
-              </p>
-            </div>
-
-            {/* Service Card 2 */}
-            <div className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-              <FaNodeJs className="text-4xl text-green-500 mb-4" />
-              <h3 className={`text-xl font-semibold text-gray-700 mb-2 ${poppins.className}`}>Back-End Development</h3>
-              <p className={`text-gray-600 ${poppins.className}`}>
-                We develop robust and scalable server-side applications using Node.js, Python, and other technologies.
-              </p>
-            </div>
-
-            {/* Service Card 3 */}
-            <div className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-              <FaDatabase className="text-4xl text-yellow-500 mb-4" />
-              <h3 className={`text-xl font-semibold text-gray-700 mb-2 ${poppins.className}`}>
-                Database Design & Management
-              </h3>
-              <p className={`text-gray-600 ${poppins.className}`}>
-                We design and manage databases using MySQL, MongoDB, PostgreSQL, and other database systems.
-              </p>
-            </div>
-
-            {/* Service Card 4 */}
-            <div className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-              <FaMobileAlt className="text-4xl text-purple-500 mb-4" />
-              <h3 className={`text-xl font-semibold text-gray-700 mb-2 ${poppins.className}`}>
-                Mobile-First Development
-              </h3>
-              <p className={`text-gray-600 ${poppins.className}`}>
-                We prioritize mobile responsiveness to ensure your website looks great on all devices.
-              </p>
-            </div>
-
-            {/* Service Card 5 */}
-            <div className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-              <FaServer className="text-4xl text-red-500 mb-4" />
-              <h3 className={`text-xl font-semibold text-gray-700 mb-2 ${poppins.className}`}>Cloud Solutions</h3>
-              <p className={`text-gray-600 ${poppins.className}`}>
-                We offer cloud solutions using AWS, Google Cloud, and Azure to ensure scalability and reliability.
-              </p>
-            </div>
-
-            {/* Service Card 6 */}
-            <div className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-              <FaCode className="text-4xl text-teal-500 mb-4" />
-              <h3 className={`text-xl font-semibold text-gray-700 mb-2 ${poppins.className}`}>
-                Custom Web Applications
-              </h3>
-              <p className={`text-gray-600 ${poppins.className}`}>
-                We build custom web applications tailored to your specific business needs and requirements.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Technologies We Use Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className={`text-3xl font-semibold text-gray-800 text-center mb-8 ${poppins.className}`}>
-            Technologies We Use
-          </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 justify-items-center">
             <FaReact className="text-5xl text-blue-500" />
             <SiNextdotjs className="text-5xl text-gray-800" />
@@ -149,31 +122,123 @@ const WebDevelopmentPage = () => {
             <SiMysql className="text-5xl text-blue-600" />
             <SiDocker className="text-5xl text-blue-400" />
             <SiKubernetes className="text-5xl text-blue-600" />
-            <SiAmazonaws className="text-5xl text-orange-400" />
-            <SiGooglecloud className="text-5xl text-blue-400" />
-            <SiAzuredevops className="text-5xl text-blue-500" />
           </div>
         </div>
       </section>
 
-      {/* Call to Action Section */}
-      <section className="py-20 bg-blue-100">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className={`text-3xl font-semibold text-gray-800 mb-4 ${poppins.className}`}>
-            Ready to Transform Your Web Presence?
-          </h2>
-          <p className={`text-lg text-gray-600 mb-8 ${poppins.className}`}>
-            Contact us today to discuss your project and get a free consultation.
-          </p>
-          <a
-            href="/contact"
-            className="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-xl"
-          >
-            Get Started
-          </a>
+      {/* Code Animation Section */}
+      <section className="py-20 overflow-hidden">
+        <div className="container max-w-7xl mx-auto">
+          <div className="relative bg-black/30 rounded-xl p-8 overflow-hidden">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0062cc] opacity-10 blur-[100px] -z-10"></div>
+
+            <RevealOnScroll>
+              <div className="mb-10">
+                <h3 className="text-2xl font-bold mb-4">Clean, Efficient Code</h3>
+                <p className="text-gray-300 max-w-2xl">
+                  We build websites with clean, well-structured code that's easy to maintain and optimized for
+                  performance.
+                </p>
+              </div>
+            </RevealOnScroll>
+
+            <RevealOnScroll>
+              <div className="bg-black/50 rounded-lg p-4 font-mono text-sm text-gray-300 overflow-x-auto">
+                <pre>
+                  <code className="language-javascript">
+                    {`// Modern JavaScript for interactive websites
+const createDynamicExperience = () => {
+  // Select interactive elements
+  const elements = document.querySelectorAll('.interactive');
+  
+  // Add event listeners and animations
+  elements.forEach(element => {
+    element.addEventListener('mouseenter', () => {
+      element.classList.add('active');
+      animateElement(element);
+    });
+    
+    element.addEventListener('mouseleave', () => {
+      element.classList.remove('active');
+      resetElement(element);
+    });
+  });
+  
+  // Initialize responsive behaviors
+  initResponsiveLayout();
+  optimizePerformance();
+  
+  console.log('Dynamic experience initialized successfully!');
+};
+
+// Call the function when DOM is ready
+document.addEventListener('DOMContentLoaded', createDynamicExperience);`}
+                  </code>
+                </pre>
+              </div>
+            </RevealOnScroll>
+          </div>
         </div>
       </section>
-    </div>
+
+      {/* Web Development Showcase Section */}
+      <section className="py-20 bg-black/20">
+        <div className="container max-w-7xl mx-auto">
+          <RevealOnScroll>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold mb-4">Web Development Excellence</h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#0062cc] to-transparent mx-auto"></div>
+              <p className="mt-4 max-w-2xl mx-auto text-gray-300">
+                We build websites that not only look great but also perform exceptionally well across all devices and
+                platforms.
+              </p>
+            </div>
+          </RevealOnScroll>
+
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <RevealOnScroll direction="right" delay={0.2}>
+              <div className="space-y-6">
+                <div className="bg-white/5 p-4 rounded-lg backdrop-blur-sm">
+                  <h3 className="text-xl font-bold text-[#0062cc] mb-2">Responsive Design</h3>
+                  <p className="text-gray-300">
+                    Our websites adapt perfectly to any screen size, ensuring a consistent experience for all users.
+                  </p>
+                </div>
+
+                <div className="bg-white/5 p-4 rounded-lg backdrop-blur-sm">
+                  <h3 className="text-xl font-bold text-[#0062cc] mb-2">Performance Optimization</h3>
+                  <p className="text-gray-300">
+                    We optimize every aspect of your website for lightning-fast loading speeds and smooth interactions.
+                  </p>
+                </div>
+
+                <div className="bg-white/5 p-4 rounded-lg backdrop-blur-sm">
+                  <h3 className="text-xl font-bold text-[#0062cc] mb-2">SEO-Friendly Structure</h3>
+                  <p className="text-gray-300">
+                    Our websites are built with search engines in mind, helping you rank higher and attract more
+                    visitors.
+                  </p>
+                </div>
+              </div>
+            </RevealOnScroll>
+
+            <RevealOnScroll direction="left">
+              <div className="relative rounded-xl overflow-hidden">
+                <img
+                  src="/web-development-showcase.png"
+                  alt="Web Development Process"
+                  className="w-full h-auto rounded-xl"
+                  onError={(e) => {
+                    e.currentTarget.src = "/digital-code-overlay.png"
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              </div>
+            </RevealOnScroll>
+          </div>
+        </div>
+      </section>
+    </ServicePage>
   )
 }
 

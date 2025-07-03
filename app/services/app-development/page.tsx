@@ -166,10 +166,6 @@ export default function AppDevelopmentPage() {
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold mb-4">App Development Showcase</h2>
               <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#00a86b] to-transparent mx-auto"></div>
-              <p className="mt-4 max-w-2xl mx-auto text-gray-300">
-                Our app development process combines cutting-edge technology with intuitive design to create exceptional
-                mobile experiences.
-              </p>
             </div>
           </RevealOnScroll>
 
@@ -200,7 +196,7 @@ export default function AppDevelopmentPage() {
                 <div className="bg-white/5 p-4 rounded-lg backdrop-blur-sm">
                   <h3 className="text-xl font-bold text-[#00a86b] mb-2">Intuitive UX Design</h3>
                   <p className="text-gray-300">
-                    We create user interfaces that are both beautiful and functional, making your app a joy to use.
+                    Our create user interfaces that are both beautiful and functional, making your app a joy to use.
                   </p>
                 </div>
 
