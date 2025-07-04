@@ -36,31 +36,62 @@ export default function Navbar() {
   const navItems = [
     {
       name: "Home",
-      href: "#",
+      href: "/",
       dropdown: false,
     },
     {
       name: "Services",
-      href: "#services",
+      href: "/services",
       dropdown: true,
       items: [
-        { name: "Social Media Ads", href: "#", description: "Boost your online presence with captivating ads" },
-        { name: "Website Development", href: "#", description: "Custom websites that convert visitors to customers" },
-        { name: "App Development", href: "#", description: "Custom mobile apps for iOS and Android" },
-        { name: "SEO", href: "#", description: "Improve your search rankings and visibility" },
-        { name: "Branding & Design", href: "#", description: "Create a memorable brand identity" },
-        { name: "Google Ads", href: "#", description: "Targeted advertising that drives results" },
-        { name: "Content Creation", href: "#", description: "Engaging content that tells your story" },
+        {
+          name: "Social Media Ads",
+          href: "/services/social-media",
+          description: "Boost your online presence with captivating ads",
+        },
+        {
+          name: "Website Development",
+          href: "/services/web-development",
+          description: "Custom websites that convert visitors to customers",
+        },
+        {
+          name: "App Development",
+          href: "/services/app-development",
+          description: "Custom mobile apps for iOS and Android",
+        },
+        { name: "SEO", href: "/services/seo", description: "Improve your search rankings and visibility" },
+        { name: "Branding & Design", href: "/services/branding", description: "Create a memorable brand identity" },
+        { name: "Google Ads", href: "/services/google-ads", description: "Targeted advertising that drives results" },
+        {
+          name: "Content Creation",
+          href: "/services/content-creation",
+          description: "Engaging content that tells your story",
+        },
       ],
     },
     {
+      name: "Portfolio",
+      href: "/portfolio",
+      dropdown: false,
+    },
+    {
+      name: "Clients",
+      href: "/clients",
+      dropdown: false,
+    },
+    {
+      name: "Reviews",
+      href: "/reviews",
+      dropdown: false,
+    },
+    {
       name: "About",
-      href: "#about",
+      href: "/about",
       dropdown: false,
     },
     {
       name: "Contact",
-      href: "#contact",
+      href: "/contact",
       dropdown: false,
     },
   ]

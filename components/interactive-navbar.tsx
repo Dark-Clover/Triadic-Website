@@ -29,6 +29,8 @@ export default function InteractiveNavbar() {
       setActiveTab("team")
     } else if (path.startsWith("/contact")) {
       setActiveTab("contact")
+    } else if (path.startsWith("/reviews")) {
+      setActiveTab("reviews")
     }
 
     const handleScroll = () => {
@@ -36,7 +38,7 @@ export default function InteractiveNavbar() {
 
       // Only determine active section based on scroll position if we're on the home page
       if (window.location.pathname === "/") {
-        const sections = ["home", "services", "about", "testimonials", "contact"]
+        const sections = ["home", "services", "about", "testimonials", "contact", "reviews"]
         const scrollPosition = window.scrollY + 100
 
         for (const section of sections) {
@@ -65,6 +67,7 @@ export default function InteractiveNavbar() {
     { id: "about", name: "About", href: "/about" },
     { id: "team", name: "Team", href: "/team" },
     { id: "contact", name: "Contact", href: "/contact" },
+    { id: "reviews", name: "reviews", href: "/reviews" },
   ]
 
   const handleTabClick = (id: string, href: string) => {

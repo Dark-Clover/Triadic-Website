@@ -19,13 +19,15 @@ export default function ContactPage() {
         <InteractiveNavbar />
 
         <div className="pt-24">
-          <Suspense fallback={<SectionLoading />}>
+
+        <Suspense fallback={<SectionLoading />}>
             <PricingCards />
           </Suspense>
-
           <Suspense fallback={<SectionLoading />}>
             <Contact />
           </Suspense>
+
+          
         </div>
 
         <Suspense fallback={<SectionLoading />}>

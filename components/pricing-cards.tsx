@@ -27,46 +27,7 @@ interface PricingTier {
 export default function PricingCards() {
   const router = useRouter()
 
-  const pricingTiers: PricingTier[] = [
-    {
-      name: "Starter",
-      features: [
-        { text: "Social media management (2 platforms)", included: true },
-        { text: "1 Meta AD Setup", included: true },
-        { text: "Basic SEO optimization", included: true },
-        { text: "5 Graphic Post/Stories Monthly", included: true },
-        { text: "Monthly performance reports", included: true },
-      ],
-      buttonText: "Get Started",
-    },
-    {
-      name: "Growth",
-      popular: true,
-      features: [
-        { text: "Social media management (3 platforms)", included: true },
-        { text: "Meta Ads, Tiktok Ads Setups/Campaigns", included: true },
-        { text: "Advanced SEO optimization", included: true },
-        { text: "2 blog posts per month", included: true },
-        { text: "8 graphic posts/stories", included: true },
-        { text: "3 video reels editing + content", included: true },
-        { text: "Bi-weekly performance reports", included: true },
-      ],
-      buttonText: "Get Started",
-    },
-    {
-      name: "Pro Business",
-      features: [
-        { text: "Social media management (4 platforms)", included: true },
-        { text: "Meta Ads, Tiktok Ads, YouTube Ads Setups/Campaigns", included: true },
-        { text: "Comprehensive SEO optimization", included: true },
-        { text: "4 blog posts per month", included: true },
-        { text: "15 graphic posts/stories", included: true },
-        { text: "6 video reels editing + content", included: true },
-        { text: "Weekly performance reports", included: true },
-      ],
-      buttonText: "Get Started",
-    },
-  ]
+  const pricingTiers: PricingTier[] = []
 
   return (
     <section className="py-12 md:py-20 bg-black">
@@ -74,7 +35,7 @@ export default function PricingCards() {
         <div className="text-center mb-10 md:mb-16">
           <div className="mb-4 flex justify-center">
             <TrueFocus
-              sentence="Choose Your Package"
+              sentence="Your Brand, Elevated, Let’s Talk"
               manualMode={false}
               blurAmount={5}
               borderColor="var(--accent-color)"
@@ -85,9 +46,6 @@ export default function PricingCards() {
               highlightWords={{ Package: "var(--accent-color)" }}
             />
           </div>
-          <p className="text-gray-400 max-w-2xl mx-auto px-4">
-            Select the perfect marketing package to elevate your brand's digital presence
-          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 md:gap-8">
