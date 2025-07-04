@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import SpotlightCard from "@/components/spotlight-card"
 import "@/components/spotlight-card.css"
+import InteractiveNavbar from "@/components/interactive-navbar" // Import the InteractiveNavbar
 
 export default function ReviewsPage() {
   const [formData, setFormData] = useState({
@@ -125,6 +126,7 @@ export default function ReviewsPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <InteractiveNavbar /> {/* Add the InteractiveNavbar here */}
       {/* Hero Section */}
       <section className="pt-32 pb-20">
         <div className="container">
@@ -143,7 +145,6 @@ export default function ReviewsPage() {
           </motion.div>
         </div>
       </section>
-
       {/* Video Reviews Section */}
       <section className="py-20">
         <div className="container">
@@ -191,7 +192,6 @@ export default function ReviewsPage() {
           </div>
         </div>
       </section>
-
       {/* Text Reviews Section */}
       <section className="py-20">
         <div className="container">
@@ -250,7 +250,6 @@ export default function ReviewsPage() {
           </div>
         </div>
       </section>
-
       {/* Leave a Review Form */}
       <section className="py-20">
         <div className="container">
