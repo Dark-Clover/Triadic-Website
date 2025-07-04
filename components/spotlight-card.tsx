@@ -1,6 +1,8 @@
 "use client"
 
 import type React from "react"
+// Ensures the module is included in the bundle
+import "@radix-ui/react-slot"
 import { useRef } from "react"
 import { cn } from "@/lib/utils"
 
