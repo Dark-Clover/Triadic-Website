@@ -10,42 +10,42 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
-import { Play, User, Quote, Send, Heart, ThumbsUp } from "lucide-react" // Removed Star
+import { User, Quote, Send, Heart, ThumbsUp } from "lucide-react"
 import SpotlightCard from "@/components/spotlight-card"
 import Footer from "@/components/footer"
 
-const videoReviews = [
+const allReviews = [
+  // Converted from previous video reviews
   {
     id: 1,
-    name: "Saleha Khan",
-    company: "Saleha Khan Healer",
-    thumbnail: "/placeholder.svg?height=200&width=300&text=Saleha+Khan+Review",
-    videoUrl: "#",
-    preview:
-      "Triadic Media transformed our digital presence completely. The results exceeded our expectations in every way possible.",
+    name: "Black Suits UAE",
+    company: "Black Suits UAE",
+    review:
+      "Triadic Media transformed our digital presence completely. The results exceeded our expectations in every way possible. Their strategic approach and execution were flawless.",
+    service: "Digital Presence Transformation",
+    date: "2024-03-20",
   },
   {
     id: 2,
-    name: "Rubina Khaur",
-    company: "Reflections with Rubina",
-    thumbnail: "/placeholder.svg?height=200&width=300&text=Rubina+Khaur+Review",
-    videoUrl: "#",
-    preview:
-      "Working with Triadic was a game-changer for our business. Their expertise in digital marketing is unmatched.",
+    name: "Anees Antapur",
+    company: "Kingsmen Real Estate",
+    review:
+      "Working with Triadic was a game-changer for our business. Their expertise in digital marketing is unmatched, leading to significant growth in our real estate ventures.",
+    service: "Digital Marketing Strategy",
+    date: "2024-03-15",
   },
   {
     id: 3,
     name: "Syed Ali Haider",
     company: "Relationship Counselor",
-    thumbnail: "/placeholder.svg?height=200&width=300&text=Syed+Ali+Haider+Review",
-    videoUrl: "#",
-    preview: "The team's creativity and technical skills delivered results beyond our wildest dreams.",
+    review:
+      "The team's creativity and technical skills delivered results beyond our wildest dreams. They truly understood our vision and brought it to life beautifully.",
+    service: "Brand & Content Development",
+    date: "2024-03-10",
   },
-]
-
-const textReviews = [
+  // Existing text reviews
   {
-    id: 1,
+    id: 4,
     name: "Rubina Khaur",
     company: "Reflections with Rubina",
     review:
@@ -54,7 +54,7 @@ const textReviews = [
     date: "2024-01-15",
   },
   {
-    id: 2,
+    id: 5,
     name: "Saleha Khan",
     company: "Saleha Khan Healer",
     review:
@@ -63,7 +63,7 @@ const textReviews = [
     date: "2024-01-10",
   },
   {
-    id: 3,
+    id: 6,
     name: "Kashif",
     company: "AK Gaming Store",
     review:
@@ -72,7 +72,7 @@ const textReviews = [
     date: "2024-01-08",
   },
   {
-    id: 4,
+    id: 7,
     name: "Afaq",
     company: "Baba Fareed Suitings",
     review:
@@ -81,7 +81,7 @@ const textReviews = [
     date: "2024-01-05",
   },
   {
-    id: 5,
+    id: 8,
     name: "Naeem",
     company: "House of Salon",
     review:
@@ -90,7 +90,7 @@ const textReviews = [
     date: "2024-01-03",
   },
   {
-    id: 6,
+    id: 9,
     name: "Osman Shahid",
     company: "The Airports Transfer",
     review:
@@ -101,7 +101,6 @@ const textReviews = [
 ]
 
 export default function ReviewsPage() {
-  const [activeTab, setActiveTab] = useState<"video" | "text">("video")
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -134,8 +133,7 @@ export default function ReviewsPage() {
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/10 to-black"></div>
             <div className="container mx-auto text-center relative z-10">
               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-                {/* Removed star rating from hero section */}
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-200 to-purple-400">
                   Client Reviews
                 </h1>
                 <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
@@ -156,123 +154,64 @@ export default function ReviewsPage() {
             </div>
           </section>
 
-          {/* Tab Navigation */}
-          <section className="px-4 mb-12">
-            <div className="container mx-auto">
-              <div className="flex justify-center mb-12">
-                <div className="bg-gray-900/50 backdrop-blur-sm rounded-full p-2 border border-purple-500/20">
-                  <Button
-                    onClick={() => setActiveTab("video")}
-                    variant={activeTab === "video" ? "default" : "ghost"}
-                    size="lg"
-                    className={`rounded-full px-8 py-3 transition-all duration-300 ${
-                      activeTab === "video"
-                        ? "bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/25"
-                        : "text-gray-300 hover:text-white hover:bg-purple-600/20"
-                    }`}
-                  >
-                    <Play className="w-5 h-5 mr-2" />
-                    Video Reviews
-                  </Button>
-                  <Button
-                    onClick={() => setActiveTab("text")}
-                    variant={activeTab === "text" ? "default" : "ghost"}
-                    size="lg"
-                    className={`rounded-full px-8 py-3 transition-all duration-300 ${
-                      activeTab === "text"
-                        ? "bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/25"
-                        : "text-gray-300 hover:text-white hover:bg-purple-600/20"
-                    }`}
-                  >
-                    <Quote className="w-5 h-5 mr-2" />
-                    Written Reviews
-                  </Button>
-                </div>
+          {/* All Reviews Section */}
+          <section className="py-20 bg-black">
+            <div className="container mx-auto px-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-center mb-16"
+              >
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-white">
+                  What Our <span className="text-[var(--accent-color)]">Clients Say</span>
+                </h2>
+                <p className="text-gray-400 max-w-2xl mx-auto">Read testimonials from businesses we've helped grow</p>
+              </motion.div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <AnimatePresence>
+                  {allReviews.map((review, index) => (
+                    <motion.div
+                      key={review.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                    >
+                      <SpotlightCard className="group h-full p-8 border border-gray-800 rounded-xl">
+                        <div className="flex items-start justify-between mb-6">
+                          <div className="flex items-center">
+                            <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center mr-4">
+                              <User className="w-6 h-6 text-white" />
+                            </div>
+                            <div>
+                              <h3 className="text-lg font-bold text-white">{review.name}</h3>
+                              <p className="text-purple-300 text-sm">{review.company}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <Quote className="w-8 h-8 text-purple-400 mb-4 opacity-50" />
+                        <p className="text-gray-300 leading-relaxed mb-6 text-base">{review.review}</p>
+
+                        <div className="flex items-center justify-between pt-4 border-t border-gray-800">
+                          <Badge variant="outline" className="border-purple-500/30 text-purple-300">
+                            {review.service}
+                          </Badge>
+                          <span className="text-sm text-gray-500">{review.date}</span>
+                        </div>
+                      </SpotlightCard>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
               </div>
             </div>
           </section>
 
-          {/* Reviews Content */}
-          <section className="px-4 pb-20">
-            <div className="container mx-auto">
-              <AnimatePresence mode="wait">
-                {activeTab === "video" && (
-                  <motion.div
-                    key="video"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
-                  >
-                    {videoReviews.map((review) => (
-                      <SpotlightCard key={review.id} className="group overflow-hidden">
-                        <div className="relative">
-                          <img
-                            src={review.thumbnail || "/placeholder.svg"}
-                            alt={`${review.name} testimonial`}
-                            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            <div className="bg-purple-600 rounded-full p-4 transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                              <Play className="w-8 h-8 text-white" />
-                            </div>
-                          </div>
-                          {/* Removed star rating from video card */}
-                        </div>
-
-                        <div className="p-6">
-                          <h3 className="text-xl font-bold text-white mb-1">{review.name}</h3>
-                          <p className="text-purple-300 text-sm mb-4">{review.company}</p>
-                          <p className="text-gray-300 leading-relaxed italic">"{review.preview}"</p>
-                        </div>
-                      </SpotlightCard>
-                    ))}
-                  </motion.div>
-                )}
-
-                {activeTab === "text" && (
-                  <motion.div
-                    key="text"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
-                  >
-                    {textReviews.map((review) => (
-                      <SpotlightCard key={review.id} className="group">
-                        <div className="p-8">
-                          <div className="flex items-start justify-between mb-6">
-                            <div className="flex items-center">
-                              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center mr-4">
-                                <User className="w-6 h-6 text-white" />
-                              </div>
-                              <div>
-                                <h3 className="text-lg font-bold text-white">{review.name}</h3>
-                                <p className="text-purple-300 text-sm">{review.company}</p>
-                              </div>
-                            </div>
-                            {/* Removed star rating from text card */}
-                          </div>
-
-                          <Quote className="w-8 h-8 text-purple-400 mb-4 opacity-50" />
-                          <p className="text-gray-300 leading-relaxed mb-6 text-base">{review.review}</p>
-
-                          <div className="flex items-center justify-between pt-4 border-t border-gray-800">
-                            <Badge variant="outline" className="border-purple-500/30 text-purple-300">
-                              {review.service}
-                            </Badge>
-                            <span className="text-sm text-gray-500">{review.date}</span>
-                          </div>
-                        </div>
-                      </SpotlightCard>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Review Form */}
+          {/* Leave a Review Form */}
+          <section className="py-20 bg-[#0a0014]">
+            <div className="container mx-auto px-4">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -343,8 +282,6 @@ export default function ReviewsPage() {
                         </select>
                       </div>
                     </div>
-
-                    {/* Removed Rating input */}
 
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">Your Review *</label>
