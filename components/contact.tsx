@@ -59,7 +59,7 @@ export default function Contact() {
       title: "Call Us",
       details: (
         <>
-          <div>+971 56 299 7778</div>
+          <div>+971 56 185 6240</div>
           <div>+92 331 1148881</div>
         </>
       ),

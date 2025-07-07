@@ -425,7 +425,7 @@ export default function TeamPage() {
       bio: "Qasim Ahmad crafts compelling written content that engages audiences and drives action. His storytelling abilities help brands communicate their message effectively across various platforms.",
     },
     {
-      name: "Danish Ahmed",
+      name: "Danish Shehzad",
       role: "Cinematographer",
       image: "/team/danish-ahmed.png",
       bio: "Danish Ahmed brings a cinematic eye to video content, capturing stunning visuals that elevate brand storytelling and create memorable impressions.",

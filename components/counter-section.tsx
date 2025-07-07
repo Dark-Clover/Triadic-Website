@@ -66,9 +66,9 @@ export default function CounterSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   const counterData = [
-    { end: 83, label: "Successful Projects", delay: 0 },
+    { end: 83, label: "Partners and Collaborators", delay: 0 },
     { end: 25, label: "Experience Years", delay: 0.2 },
-    { end: 124, label: "Happy Customers", delay: 0.4 },
+    { end: 138, label: "Happy Customers", delay: 0.4 },
     { end: 15, label: "Team Members", delay: 0.6 },
   ]
 

@@ -27,13 +27,13 @@ export default function ContentKing() {
     {
       icon: Globe,
       number: "20+",
-      title: "Websites Created",
+      title: "Industries Served", // Changed from "Websites Created"
       subtitle: "custom solutions",
       gradient: "from-purple-400 to-pink-500",
     },
     {
       icon: Users,
-      number: "1000+",
+      number: "6500+",
       title: "Leads Generated",
       subtitle: "qualified prospects",
       gradient: "from-green-400 to-emerald-500",

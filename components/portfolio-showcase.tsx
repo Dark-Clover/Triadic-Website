@@ -274,7 +274,7 @@ const portfolioData = {
     },
     {
       id: "lead-gen-5",
-      title: "Shoba",
+      title: "SOBHA",
       subtitle: "Lead Generation Campaigns",
       description: "Enchanced Sales through Digital marketing and Lead Generation strategies",
       image: "https://i.ibb.co/tMQgB8c8/sobha.png",

@@ -1,70 +1,104 @@
 "use client"
+import { motion } from "framer-motion"
+import Image from "next/image"
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
-import GridMotion from "./grid-motion"
-import RevealOnScroll from "./scroll-reveal"
+const clientLogos = [
+  { src: "/heart-of-europe-logo.png", alt: "Heart of Europe Logo" },
+  { src: "/damac-new-logo.png", alt: "Damac Logo" },
+  { src: "/heart-2-heart-logo.png", alt: "Heart 2 Heart Logo" },
+  { src: "/xe-square-capital-logo.png", alt: "XE Square Capital Logo" },
+  { src: "/k-shield-logo.png", alt: "K-Shield Logo" },
+  { src: "/kingsmen-real-estate-logo.png", alt: "Kingsmen Real Estate Logo" },
+  { src: "/ak-technologies-logo.png", alt: "AK Technologies Logo" },
+  { src: "/milo-logo.png", alt: "Milo Logo" },
+  { src: "/blacksuit-logo.png", alt: "Blacksuit Logo" },
+  { src: "/reflections-with-rubina-logo.png", alt: "Reflections with Rubina Logo" },
+  { src: "/tbh-logo.png", alt: "TBH Logo" },
+  { src: "/savvy-logo.png", alt: "Savvy Logo" },
+  { src: "/sobha-realty-logo.png", alt: "Sobha Realty Logo" },
+]
 
 export default function ClientLogos() {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
-
-  // Replace the clientLogos array with this updated version that includes the milo logo
-
-  const clientLogos = [
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/heart-of-europe-logo-WItVDvX8Zn0j1GYqETz4YGLWXWaWbV.png", // Heart of Europe
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blacksuit%20Logo%20White-iUwLNKJ9xle9FQ4517iRmEXnu8UWNM.png", // Blacksuit
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/damac-logo-white-A5kE0sCnjS38pHcWG6iCwSh4FlpFif.png", // DAMAC
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/h2h%20brown%20logo-jzEhKhSL2ie7cMKPY4krhQtSQrium0.png", // Heart 2 Heart
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/---46nk4LWMUQk1lE9OjgmBThQjpm0khN.png", // XE Square Capital
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/final-logo-02%20white-Ga3FpZXyVK9goTV2hb1niRg0ohfVHR.png", // White logo
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/H2H%20logo%20bbrown%20heart%20only-WiSYWSKrIC8cldhk7G5XWg1YnxoTZQ.png", // Heart 2 Heart heart only
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/badge%20png-BLllCGTJqMz0XqZysJvv19KiWMooJy.png", // K shield
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo%20Final%20Kingsmen%20without%20badge-lLPhOtuAcMoDfNs9L6h5W1l2sfjN48.png", // Kingsmen Real Estate
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AK%20logo%20PNG-YH5uYeSnEcRfe5BLLkZlhL2t3CTDVc.png", // AK Technologies
-    // New logos
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Reportage-Logo-ga152qJ92DXeKMGThjQewEMG62hn3e.png", // Reportage Logo
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/milo-logo-qiFluH6qC5aeqUzn6lSFJJcgKZsNRn.png", // Milo logo
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Orange-2Ud4TDQlBsRq17nVpnoK5MEcbIrMZW.png", // Organic Magic logo
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/website-16sOdkcT4AKmx9ajaD8gKRJ9wAAOHD.png", // Gold geometric logo
-    // Repeat logos to fill the grid
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/heart-of-europe-logo-WItVDvX8Zn0j1GYqETz4YGLWXWaWbV.png",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blacksuit%20Logo%20White-iUwLNKJ9xle9FQ4517iRmEXnu8UWNM.png",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/damac-logo-white-A5kE0sCnjS38pHcWG6iCwSh4FlpFif.png",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/h2h%20brown%20logo-jzEhKhSL2ie7cMKPY4krhQtSQrium0.png",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/---46nk4LWMUQk1lE9OjgmBThQjpm0khN.png",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/final-logo-02%20white-Ga3FpZXyVK9goTV2hb1niRg0ohfVHR.png",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/H2H%20logo%20bbrown%20heart%20only-WiSYWSKrIC8cldhk7G5XWg1YnxoTZQ.png",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/badge%20png-BLllCGTJqMz0XqZysJvv19KiWMooJy.png",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Reportage-Logo-ga152qJ92DXeKMGThjQewEMG62hn3e.png",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/milo-logo-qiFluH6qC5aeqUzn6lSFJJcgKZsNRn.png", // Milo logo
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Orange-2Ud4TDQlBsRq17nVpnoK5MEcbIrMZW.png",
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/website-16sOdkcT4AKmx9ajaD8gKRJ9wAAOHD.png",
-  ]
+  const duplicatedLogos = [...clientLogos, ...clientLogos, ...clientLogos] // Duplicate for seamless loop
 
   return (
-    <section ref={ref} className="py-20 bg-black relative overflow-hidden">
-      <div className="container mb-8">
-        <RevealOnScroll>
-          <div className="text-center mb-8">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-white">
-              Official Marketing <span className="text-[var(--accent-color)]">Partner</span>
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              We're proud to work with these amazing brands and help them achieve their digital goals.
-            </p>
-          </div>
-        </RevealOnScroll>
-      </div>
+    <section className="py-16 bg-black text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid-small-white/[0.05] [mask-image:linear-gradient(to_bottom,transparent,white_20%,white_80%,transparent)]"></div>
+      <div className="container mx-auto px-4 relative z-10">
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-200 to-purple-400">
+          Official Marketing <span className="text-[var(--accent-color)]">Partner</span>
+        </h2>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 1 }}
-        className="h-[50vh] md:h-[60vh] w-full"
-      >
-        <GridMotion items={clientLogos} gradientColor="rgba(147, 51, 234, 0.1)" />
-      </motion.div>
+        <div className="space-y-8">
+          {/* Top row - scrolls left */}
+          <div className="relative w-full overflow-hidden">
+            <motion.div
+              className="flex"
+              animate={{
+                x: ["0%", "-100%"],
+                transition: {
+                  x: {
+                    repeat: Number.POSITIVE_INFINITY,
+                    repeatType: "loop",
+                    duration: 60, // Adjust speed as needed
+                    ease: "linear",
+                  },
+                },
+              }}
+            >
+              {duplicatedLogos.map((logo, index) => (
+                <div
+                  key={`top-${index}`}
+                  className="flex-shrink-0 mx-8 opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                >
+                  <Image
+                    src={logo.src || "/placeholder.svg"}
+                    alt={logo.alt}
+                    width={150}
+                    height={80}
+                    objectFit="contain"
+                    className="h-20 w-auto"
+                  />
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Bottom row - scrolls right */}
+          <div className="relative w-full overflow-hidden">
+            <motion.div
+              className="flex"
+              animate={{
+                x: ["-100%", "0%"],
+                transition: {
+                  x: {
+                    repeat: Number.POSITIVE_INFINITY,
+                    repeatType: "loop",
+                    duration: 60, // Adjust speed as needed
+                    ease: "linear",
+                  },
+                },
+              }}
+            >
+              {duplicatedLogos.map((logo, index) => (
+                <div
+                  key={`bottom-${index}`}
+                  className="flex-shrink-0 mx-8 opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                >
+                  <Image
+                    src={logo.src || "/placeholder.svg"}
+                    alt={logo.alt}
+                    width={150}
+                    height={80}
+                    objectFit="contain"
+                    className="h-20 w-auto"
+                  />
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }
