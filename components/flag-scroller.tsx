@@ -7,7 +7,7 @@ const flags = [
   { id: "uae", name: "United Arab Emirates", src: "https://i.ibb.co/gZBBpM1x/Flag-United-Arab-Emirates.png" },
   { id: "uk", name: "United Kingdom", src: "https://i.ibb.co/h1B23fTg/uk.png" },
   { id: "usa", name: "United States", src: "https://i.ibb.co/4Z4WNtxN/usa.png" },
-  { id: "bahrian", name: "Canada", src: "https://i.ibb.co/pvnCVpy6/bahrian.png" },
+  { id: "bahrian", name: "Bahrian", src: "https://i.ibb.co/pvnCVpy6/bahrian.png" },
   { id: "switzerland", name: "Switzerland", src: "https://i.ibb.co/23Vkzyyz/swiss.png" },
   { id: "pakistan", name: "Pakistan", src: "https://i.ibb.co/QvJmP6gY/pak.png" },
 ]
