@@ -11,6 +11,7 @@ import RevealOnScroll from "./scroll-reveal"
 import EnhancedButton from "./enhanced-button"
 import { useRouter } from "next/navigation"
 import { sendEmail } from "@/app/actions/send-email"
+import Image from "next/image"
 
 export default function Contact() {
   const router = useRouter()
@@ -70,7 +71,32 @@ export default function Contact() {
       title: "Visit Us",
       details: (
         <a
-          href="https://www.google.com/maps/place/33%C2%B031'19.2%22N+73%C2%B009'14.8%22E/@33.5220934,73.1538162,21z/data=!4m5!3m4!4b1!8m2!3d33.5220032!4d73.1541138?hl=en&entry=ttu&g_ep=EgoyMDI1MDYyMy4yIKXMDSoASAFQAw%3D%3D"
+          href="https://www.google.com/maps/dir//247+Rd+No+1704,+Manama,+Bahrain/@26.2416727,50.5471215,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3e49a5e905673dcf:0x7718553f512d6f7e!2m2!1d50.5882159!2d26.2417322?entry=ttu&g_ep=EgoyMDI1MDcxNS4xIKXMDSoASAFQAw%3D%3D"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline"
+        >
+          Building Park Plaza Level 4, Diplomatic Area 317, Road 1704, Manama - The Kingdom of Bahrain
+        </a>
+      ),
+      description: "Book an appointment first",
+      flag: (
+        <Image
+          src="https://flagcdn.com/w40/bh.png"
+          alt="Bahrain Flag"
+          width={20}
+          height={15}
+          className="inline-block ml-2"
+        />
+      ),
+    },
+
+    {
+      icon: <MapPin className="h-5 w-5" />,
+      title: "Visit Us",
+      details: (
+        <a
+          href="https://www.google.com/maps/dir//33.522196,73.1539818/@33.5221834,73.1539054,21z/data=!4m2!4m1!3e0?hl=en&entry=ttu&g_ep=EgoyMDI1MDcxNS4xIKXMDSoASAFQAw%3D%3D"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:underline"
@@ -79,6 +105,15 @@ export default function Contact() {
         </a>
       ),
       description: "Book an appointment first",
+      flag: (
+        <Image
+          src="https://flagcdn.com/w40/pk.png"
+          alt="Pakistan Flag"
+          width={20}
+          height={15}
+          className="inline-block ml-2"
+        />
+      ),
     },
   ]
 
@@ -201,7 +236,10 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <h4 className="font-medium text-white">{item.title}</h4>
+                    <h4 className="font-medium text-white flex items-center">
+                      {item.title}
+                      {item.flag && item.flag}
+                    </h4>
                     <p className="text-lg font-semibold text-gray-300 break-words">{item.details}</p>
                     <p className="text-sm text-gray-500">{item.description}</p>
                   </div>
