@@ -452,4 +452,4 @@ export default function VoiceAgentShowcase() {
       </div>
     </section>
   )
-} 
+}

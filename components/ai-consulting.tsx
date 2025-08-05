@@ -266,4 +266,4 @@ export default function AIConsulting() {
       </div>
     </section>
   )
-} 
+}
