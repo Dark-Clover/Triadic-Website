@@ -65,7 +65,7 @@ export default function InteractiveNavbar() {
   const navItems = [
     { id: "home", name: "Home", href: "/" },
     { id: "services", name: "Services", href: "/services" },
-    { id: "ai", name: "AI", href: "/ai" },
+    { id: "ai", name: "AI Solutions", href: "/ai" },
     { id: "portfolio", name: "Portfolio", href: "/portfolio" },
     { id: "about", name: "About", href: "/about" },
     { id: "team", name: "Team", href: "/team" },
