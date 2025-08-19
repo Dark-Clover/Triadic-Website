@@ -27,6 +27,18 @@ const portfolioData = {
   websites: {
     "booking-appointments": [
       {
+        id: "spaholics",
+        title: "Spaholics",
+        subtitle: "Luxury In-Home Massage Booking",
+        description:
+          "Premium in-home massage booking platform with user dashboard, admin panel, and secure user authentication. Features luxury wellness packages and professional therapist booking.",
+        image: "/images/spaholics.png",
+        url: "https://spaholicsuae.com/",
+        tags: ["Massage", "Wellness", "Booking", "User Dashboard", "Admin Panel"],
+        category: "websites",
+        subcategory: "booking-appointments",
+      },
+      {
         id: "saleha-khan-healer",
         title: "Saleha Khan Healer",
         subtitle: "Therapy Session Booking Site",
@@ -157,6 +169,17 @@ const portfolioData = {
       },
     ],
     portfolios: [
+      {
+        id: "celestial-hub",
+        title: "Celestial Hub",
+        subtitle: "Visa Consulting Agency Landing Page",
+        description: "Professional landing page for a comprehensive visa consulting agency offering tourist visas, business visas, student visas, and investment visas with global reach across 50+ countries.",
+        image: "/images/celestial.png",
+        url: "https://www.celestialhub-co.com/",
+        tags: ["Visa Consulting", "Landing Page", "Travel", "Immigration", "Global Services"],
+        category: "websites",
+        subcategory: "portfolios",
+      },
       {
         id: "anees-antapur",
         title: "Anees Antapur",
