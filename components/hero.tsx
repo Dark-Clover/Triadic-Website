@@ -1,15 +1,25 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef, useEffect, useState } from "react"
+import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
 import ScrollVelocity from "./scroll-velocity"
 import EnhancedButton from "./enhanced-button"
-import { motion } from "framer-motion"
+
+interface Particle {
+  x: number
+  y: number
+  size: number
+  speedX: number
+  speedY: number
+  opacity: number
+}
 
 export default function Hero() {
   const router = useRouter()
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const sectionRef = useRef<HTMLElement>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const animationRef = useRef<number>()
   const [isMounted, setIsMounted] = useState(false)
 
   // Only run animations after component is mounted
@@ -20,104 +30,66 @@ export default function Hero() {
 
   // Particle animation in background - optimized
   useEffect(() => {
-    if (!isMounted) return
-
     const canvas = canvasRef.current
     if (!canvas) return
 
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    // Check if device is mobile for performance optimization
-    const isMobile = window.innerWidth < 768
+    const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false
+    const particleCount = isMobile ? 10 : (typeof window !== "undefined" ? Math.floor(window.innerWidth / 100) : 20)
 
-    // Reduce particle count for mobile
-    const particleCount = isMobile ? 10 : Math.floor(window.innerWidth / 100)
-
-    let particles: {
-      x: number
-      y: number
-      radius: number
-      color: string
-      vx: number
-      vy: number
-    }[] = []
-
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-      initParticles()
+    const particles: Particle[] = []
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 1,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.5 + 0.2,
+      })
     }
 
-    const initParticles = () => {
-      particles = []
-
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5, // Smaller particles
-          color: `rgba(147, 51, 234, ${Math.random() * 0.12})`, // Updated color with lower opacity
-          vx: Math.random() * 0.3 - 0.15, // Slower movement
-          vy: Math.random() * 0.3 - 0.15, // Slower movement
-        })
-      }
-    }
-
-    const drawParticles = () => {
+    const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       particles.forEach((particle) => {
+        particle.x += particle.speedX
+        particle.y += particle.speedY
+
+        if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1
+        if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1
+
         ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2)
-        ctx.fillStyle = particle.color
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(147, 51, 234, ${particle.opacity})`
         ctx.fill()
-
-        // Update position
-        particle.x += particle.vx
-        particle.y += particle.vy
-
-        // Bounce off edges
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1
       })
 
-      // Draw connections - only if not mobile
-      if (!isMobile) {
-        particles.forEach((particle, i) => {
-          // Limit connections to improve performance
-          const connectionsLimit = 3
-          let connections = 0
+      animationRef.current = requestAnimationFrame(animate)
+    }
 
-          for (let j = i + 1; j < particles.length && connections < connectionsLimit; j++) {
-            const dx = particle.x - particles[j].x
-            const dy = particle.y - particles[j].y
-            const distance = Math.sqrt(dx * dx)
-
-            if (distance < 80) {
-              // Reduced connection distance
-              ctx.beginPath()
-              ctx.moveTo(particle.x, particle.y)
-              ctx.lineTo(particles[j].x, particles[j].y)
-              ctx.strokeStyle = `rgba(147, 51, 234, ${0.04 * (1 - distance / 80)})`
-              ctx.stroke()
-              connections++
-            }
-          }
-        })
+    const resize = () => {
+      if (typeof window !== "undefined") {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
       }
-
-      requestAnimationFrame(drawParticles)
     }
 
-    window.addEventListener("resize", resize)
     resize()
-    drawParticles()
+    animate()
 
-    return () => {
-      window.removeEventListener("resize", resize)
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", resize)
+      return () => {
+        window.removeEventListener("resize", resize)
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current)
+        }
+      }
     }
-  }, [isMounted])
+  }, [])
 
   return (
     <section
@@ -137,7 +109,7 @@ export default function Hero() {
             textColor="text-zinc-300/40"
             numCopies={6}
             velocityMapping={{ input: [0, 1000], output: [0, 5] }}
-            scrollContainerRef={typeof window !== "undefined" ? window : undefined}
+            scrollContainerRef={sectionRef}
             parallaxStyle={{
               opacity: 0.5,
               letterSpacing: "0.05em",

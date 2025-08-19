@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useLayoutEffect, useState } from "react"
+import { useRef, useLayoutEffect, useState, useEffect } from "react"
 import {
   motion,
   useScroll,
@@ -12,7 +12,38 @@ import {
 } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-function useElementWidth(ref) {
+interface ScrollVelocityProps {
+  scrollContainerRef?: React.RefObject<HTMLElement> | null
+  texts?: string[]
+  velocity?: number
+  className?: string
+  damping?: number
+  stiffness?: number
+  numCopies?: number
+  velocityMapping?: { input: number[]; output: number[] }
+  parallaxClassName?: string
+  scrollerClassName?: string
+  parallaxStyle?: React.CSSProperties
+  scrollerStyle?: React.CSSProperties
+  textColor?: string
+}
+
+interface VelocityTextProps {
+  children: React.ReactNode
+  baseVelocity?: number
+  scrollContainerRef?: React.RefObject<HTMLElement> | null
+  className?: string
+  damping?: number
+  stiffness?: number
+  numCopies?: number
+  velocityMapping?: { input: number[]; output: number[] }
+  parallaxClassName?: string
+  scrollerClassName?: string
+  parallaxStyle?: React.CSSProperties
+  scrollerStyle?: React.CSSProperties
+}
+
+function useElementWidth(ref: React.RefObject<HTMLElement>) {
   const [width, setWidth] = useState(0)
 
   useLayoutEffect(() => {
@@ -22,14 +53,16 @@ function useElementWidth(ref) {
       }
     }
     updateWidth()
-    window.addEventListener("resize", updateWidth)
-    return () => window.removeEventListener("resize", updateWidth)
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", updateWidth)
+      return () => window.removeEventListener("resize", updateWidth)
+    }
   }, [ref])
 
   return width
 }
 
-export const ScrollVelocity = ({
+export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
   scrollContainerRef,
   texts = [],
   velocity = 100,
@@ -44,6 +77,12 @@ export const ScrollVelocity = ({
   scrollerStyle,
   textColor = "text-white", // Default to white text
 }) => {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   function VelocityText({
     children,
     baseVelocity = velocity,
@@ -57,9 +96,11 @@ export const ScrollVelocity = ({
     scrollerClassName,
     parallaxStyle,
     scrollerStyle,
-  }) {
+  }: VelocityTextProps) {
     const baseX = useMotionValue(0)
-    const scrollOptions = scrollContainerRef ? { container: scrollContainerRef } : {}
+    
+    // Only use scroll container if it's properly defined and mounted
+    const scrollOptions = scrollContainerRef && isMounted ? { container: scrollContainerRef } : {}
     const { scrollY } = useScroll(scrollOptions)
     const scrollVelocity = useVelocity(scrollY)
     const smoothVelocity = useSpring(scrollVelocity, {
@@ -73,10 +114,10 @@ export const ScrollVelocity = ({
       { clamp: false },
     )
 
-    const copyRef = useRef(null)
+    const copyRef = useRef<HTMLSpanElement>(null)
     const copyWidth = useElementWidth(copyRef)
 
-    function wrap(min, max, v) {
+    function wrap(min: number, max: number, v: number) {
       const range = max - min
       const mod = (((v - min) % range) + range) % range
       return mod + min
@@ -117,6 +158,11 @@ export const ScrollVelocity = ({
         </motion.div>
       </div>
     )
+  }
+
+  // Don't render until mounted to prevent hydration issues
+  if (!isMounted) {
+    return null
   }
 
   return (

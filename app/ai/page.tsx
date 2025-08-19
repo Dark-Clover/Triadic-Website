@@ -20,7 +20,7 @@ export default function AIPage() {
       <main className="min-h-screen bg-black overflow-hidden">
         <InteractiveNavbar />
 
-        <div className="pt-24">
+        <div className="pt-20 md:pt-24">
           <Suspense fallback={<SectionLoading />}>
             <AIHero />
           </Suspense>

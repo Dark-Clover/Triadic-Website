@@ -19,6 +19,89 @@ body {
     "Helvetica Neue", sans-serif;
 }
 
+/* Mobile navigation improvements */
+@media (max-width: 768px) {
+  /* Ensure navigation header is always fully visible */
+  header {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Prevent content from being hidden behind navigation on mobile */
+  main {
+    padding-top: 80px;
+  }
+
+  /* Ensure mobile menu covers full screen */
+  .mobile-menu-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+    background: white !important;
+    overflow: hidden !important;
+  }
+
+  /* Prevent body scroll when mobile menu is open */
+  body.menu-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+  }
+
+  /* Ensure mobile menu content is properly positioned */
+  .mobile-menu-overlay > div {
+    position: relative !important;
+    z-index: 10000 !important;
+  }
+
+  /* Force mobile menu to be above everything */
+  .mobile-menu-overlay * {
+    position: relative !important;
+    z-index: 10000 !important;
+  }
+
+  /* Additional mobile menu positioning fixes */
+  .mobile-menu-overlay {
+    transform: translateZ(0) !important;
+    will-change: transform !important;
+    backface-visibility: hidden !important;
+  }
+
+  /* Ensure mobile menu is above all other elements */
+  body > .mobile-menu-overlay {
+    position: fixed !important;
+    z-index: 999999 !important;
+  }
+
+  /* Force mobile menu visibility */
+  .mobile-menu-overlay {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Ensure mobile menu covers entire screen */
+  .mobile-menu-overlay {
+    min-height: 100vh !important;
+    min-width: 100vw !important;
+    max-height: 100vh !important;
+    max-width: 100vw !important;
+  }
+
+  /* Debug styles - make sure menu is visible */
+  .mobile-menu-overlay {
+    border: 3px solid red !important;
+    background: white !important;
+  }
+}
+
 .parallax {
   position: relative;
   overflow: hidden;

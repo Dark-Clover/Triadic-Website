@@ -14,6 +14,19 @@ export default function InteractiveNavbar() {
   const tabsRef = useRef<(HTMLAnchorElement | null)[]>([])
   const router = useRouter()
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('menu-open')
+    } else {
+      document.body.classList.remove('menu-open')
+    }
+
+    return () => {
+      document.body.classList.remove('menu-open')
+    }
+  }, [isOpen])
+
   useEffect(() => {
     // Set active tab based on current path when component mounts
     const path = window.location.pathname
@@ -96,7 +109,7 @@ export default function InteractiveNavbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled ? "bg-white py-3 shadow-sm" : "bg-black/30 backdrop-blur-sm py-5",
       )}
     >
@@ -126,7 +139,9 @@ export default function InteractiveNavbar() {
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
               >
                 <a
-                  ref={(el) => (tabsRef.current[i] = el)}
+                  ref={(el) => {
+                    tabsRef.current[i] = el
+                  }}
                   href={item.href}
                   onClick={(e) => {
                     e.preventDefault()
@@ -173,7 +188,11 @@ export default function InteractiveNavbar() {
         </motion.div>
 
         <button
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            console.log('Menu button clicked, current state:', isOpen)
+            setIsOpen(!isOpen)
+            console.log('Menu state after click:', !isOpen)
+          }}
           className={cn(
             "p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4a0072] md:hidden relative z-50",
             scrolled ? "bg-gray-100" : "bg-white/40 backdrop-blur-sm",
@@ -189,62 +208,54 @@ export default function InteractiveNavbar() {
         </button>
 
         {/* Mobile menu */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, x: "100%" }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: "100%" }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed inset-0 bg-white z-50 flex flex-col"
-            >
-              <div className="flex justify-between items-center p-5 border-b border-gray-100">
-                <Link href="/" onClick={() => setIsOpen(false)}>
-                  <img src="/triadic-logo-new.png" alt="Triadic Media" className="h-12 brightness-0" />
-                </Link>
-                <button
-                  className="p-2 rounded-full hover:bg-gray-100"
-                  onClick={() => setIsOpen(false)}
-                  aria-label="Close menu"
-                >
-                  <X className="h-6 w-6 text-gray-800" />
-                </button>
-              </div>
+        {isOpen && (
+          <div className="fixed top-0 left-0 right-0 bottom-0 bg-red-500 z-[9999] flex flex-col mobile-menu-overlay">
+            <div className="flex justify-between items-center p-5 border-b border-gray-100">
+              <Link href="/" onClick={() => setIsOpen(false)}>
+                <img src="/triadic-logo-new.png" alt="Triadic Media" className="h-12 brightness-0" />
+              </Link>
+              <button
+                className="p-2 rounded-full hover:bg-gray-100"
+                onClick={() => setIsOpen(false)}
+                aria-label="Close menu"
+              >
+                <X className="h-6 w-6 text-gray-800" />
+              </button>
+            </div>
 
-              <div className="flex-1 overflow-auto py-8">
-                <ul className="flex flex-col items-center gap-2">
-                  {navItems.map((item, index) => (
-                    <li key={index} className="w-full text-center border-b border-gray-100 last:border-0">
-                      <Link
-                        href={item.href}
-                        className="block px-4 py-4 text-lg text-gray-800 hover:text-[#4a0072] transition-colors"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          setIsOpen(false)
-                          handleTabClick(item.id, item.href)
-                        }}
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="flex-1 overflow-auto py-8">
+              <ul className="flex flex-col items-center gap-2">
+                {navItems.map((item, index) => (
+                  <li key={index} className="w-full text-center border-b border-gray-100 last:border-0">
+                    <Link
+                      href={item.href}
+                      className="block px-4 py-4 text-lg text-gray-800 hover:text-[#4a0072] transition-colors"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        setIsOpen(false)
+                        handleTabClick(item.id, item.href)
+                      }}
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-              <div className="p-5 border-t border-gray-100 flex justify-center">
-                <a
-                  href="https://api.whatsapp.com/send/?phone=971562997778&text&type=phone_number&app_absent=0"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-[#4a0072] hover:bg-[#3a0058] text-white px-6 py-3 rounded-full inline-block w-full text-center"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Book a Consultation
-                </a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <div className="p-5 border-t border-gray-100 flex justify-center">
+              <a
+                href="https://api.whatsapp.com/send/?phone=971562997778&text&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#4a0072] hover:bg-[#3a0058] text-white px-6 py-3 rounded-full inline-block w-full text-center"
+                onClick={() => setIsOpen(false)}
+              >
+                Book a Consultation
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   )

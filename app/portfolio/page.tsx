@@ -331,7 +331,7 @@ export default function PortfolioShowcase() {
   }
 
   return (
-    <section className="relative min-h-screen bg-black text-white overflow-hidden pt-24">
+    <section className="relative min-h-screen bg-black text-white overflow-hidden pt-20 md:pt-24">
       <InteractiveNavbar />
       
       {/* Hero Section */}

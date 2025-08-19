@@ -29,13 +29,16 @@ export default function AnimatedBackground({ children }: { children?: React.Reac
   // Check if device is mobile for performance optimization
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+      if (typeof window !== "undefined") {
+        setIsMobile(window.innerWidth < 768)
+      }
     }
 
     checkMobile()
-    window.addEventListener("resize", checkMobile)
-
-    return () => window.removeEventListener("resize", checkMobile)
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", checkMobile)
+      return () => window.removeEventListener("resize", checkMobile)
+    }
   }, [])
 
   useEffect(() => {
@@ -49,16 +52,20 @@ export default function AnimatedBackground({ children }: { children?: React.Reac
     if (!ctx) return
 
     const handleResize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-      generateParticles()
+      if (typeof window !== "undefined") {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+        generateParticles()
+      }
     }
 
     const generateParticles = () => {
       particlesRef.current = []
 
       // Reduce particle count based on screen size
-      const particleCount = Math.min(PARTICLE_COUNT, Math.floor(window.innerWidth / 150))
+      const particleCount = typeof window !== "undefined" 
+        ? Math.min(PARTICLE_COUNT, Math.floor(window.innerWidth / 150))
+        : PARTICLE_COUNT
 
       for (let i = 0; i < particleCount; i++) {
         particlesRef.current.push({
@@ -119,13 +126,19 @@ export default function AnimatedBackground({ children }: { children?: React.Reac
       animationRef.current = requestAnimationFrame(animateParticles)
     }
 
-    window.addEventListener("resize", handleResize)
-    handleResize()
-    animateParticles()
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize)
+      handleResize()
+      animateParticles()
+    }
 
     return () => {
-      window.removeEventListener("resize", handleResize)
-      if (animationRef.current) cancelAnimationFrame(animationRef.current)
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize)
+      }
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
     }
   }, [isMobile])
 
