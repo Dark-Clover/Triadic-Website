@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useRouter } from "next/navigation"
@@ -17,13 +17,13 @@ export default function InteractiveNavbar() {
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add('menu-open')
+      document.body.classList.add("menu-open")
     } else {
-      document.body.classList.remove('menu-open')
+      document.body.classList.remove("menu-open")
     }
 
     return () => {
-      document.body.classList.remove('menu-open')
+      document.body.classList.remove("menu-open")
     }
   }, [isOpen])
 
@@ -36,6 +36,8 @@ export default function InteractiveNavbar() {
       setActiveTab("services")
     } else if (path.startsWith("/ai")) {
       setActiveTab("ai")
+    } else if (path.startsWith("/podcast")) {
+      setActiveTab("podcast")
     } else if (path.startsWith("/portfolio")) {
       setActiveTab("portfolio")
     } else if (path.startsWith("/about")) {
@@ -79,6 +81,7 @@ export default function InteractiveNavbar() {
     { id: "home", name: "Home", href: "/" },
     { id: "services", name: "Services", href: "/services" },
     { id: "ai", name: "AI Solutions", href: "/ai" },
+    { id: "podcast", name: "Podcast", href: "/podcast" },
     { id: "portfolio", name: "Portfolio", href: "/portfolio" },
     { id: "about", name: "About", href: "/about" },
     { id: "team", name: "Team", href: "/team" },
@@ -113,7 +116,7 @@ export default function InteractiveNavbar() {
         scrolled ? "bg-white py-3 shadow-sm" : "bg-black/30 backdrop-blur-sm py-5",
       )}
     >
-      <div className="container px-4 sm:px-6 flex items-center justify-between">
+      <div className="container px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <Link href="/" className="relative z-50">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -129,8 +132,8 @@ export default function InteractiveNavbar() {
           </motion.div>
         </Link>
 
-        <div className="hidden md:block relative">
-          <nav className="flex items-center gap-8">
+        <div className="hidden lg:block relative">
+          <nav className="flex items-center gap-6">
             {navItems.map((item, i) => (
               <motion.div
                 key={item.id}
@@ -148,9 +151,9 @@ export default function InteractiveNavbar() {
                     handleTabClick(item.id, item.href)
                   }}
                   className={cn(
-                    "relative px-4 py-2 transition-colors",
+                    "relative px-3 py-2 transition-colors text-sm font-medium",
                     scrolled ? "text-gray-700 hover:text-[#4a0072]" : "text-white hover:text-white/80",
-                    activeTab === item.id && (scrolled ? "text-[#4a0072] font-medium" : "text-white font-medium"),
+                    activeTab === item.id && (scrolled ? "text-[#4a0072] font-semibold" : "text-white font-semibold"),
                   )}
                 >
                   {item.name}
@@ -174,13 +177,13 @@ export default function InteractiveNavbar() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="hidden md:block"
+          className="hidden lg:block"
         >
           <a
             href="https://api.whatsapp.com/send/?phone=971562997778&text&type=phone_number&app_absent=0"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative overflow-hidden rounded-full bg-[#4a0072] px-6 py-2 text-white group inline-block"
+            className="relative overflow-hidden rounded-full bg-[#4a0072] px-5 py-2.5 text-white group inline-block text-sm font-medium"
           >
             <span className="relative z-10">Book a Consultation</span>
             <span className="absolute inset-0 bg-gradient-to-r from-[#4a0072] to-[#8e00da] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -189,9 +192,9 @@ export default function InteractiveNavbar() {
 
         <button
           onClick={() => {
-            console.log('Menu button clicked, current state:', isOpen)
+            console.log("Menu button clicked, current state:", isOpen)
             setIsOpen(!isOpen)
-            console.log('Menu state after click:', !isOpen)
+            console.log("Menu state after click:", !isOpen)
           }}
           className={cn(
             "p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4a0072] md:hidden relative z-50",
@@ -209,7 +212,7 @@ export default function InteractiveNavbar() {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="fixed top-0 left-0 right-0 bottom-0 bg-red-500 z-[9999] flex flex-col mobile-menu-overlay">
+          <div className="fixed top-0 left-0 right-0 bottom-0 bg-white z-[9999] flex flex-col mobile-menu-overlay">
             <div className="flex justify-between items-center p-5 border-b border-gray-100">
               <Link href="/" onClick={() => setIsOpen(false)}>
                 <img src="/triadic-logo-new.png" alt="Triadic Media" className="h-12 brightness-0" />
