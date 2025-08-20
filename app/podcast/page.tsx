@@ -405,7 +405,7 @@ const PodcastPage = () => {
                 <div className="relative">
                   <div className="relative rounded-2xl overflow-hidden">
                     <img
-                      src="/voice agent 2.png"
+                      src="https://i.ibb.co/SXMyw3Fn/ge.png"
                       alt="Professional Podcast Studio Setup"
                       className="w-full h-auto rounded-2xl"
                     />
