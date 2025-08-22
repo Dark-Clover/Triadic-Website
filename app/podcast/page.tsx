@@ -1178,7 +1178,7 @@ const PodcastPage = () => {
                         }
                       }}
                     >
-                      <source src="/audio/studio-demo.mp3" type="audio/mpeg" />
+                      <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_d5ca3UD7kTIwCYN2dUju5xHbHFhP/IJYBeW9LZZnZiiHCcxyNp8/public/audio/studio-demo.mp3" type="audio/mpeg" />
                       <source src="/audio/studio-demo.wav" type="audio/wav" />
                       Your browser does not support the audio element.
                     </audio>

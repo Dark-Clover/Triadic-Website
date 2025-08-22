@@ -20,9 +20,9 @@ To make the podcast audio player functional, add one of these audio files to thi
 
 ## File Placement:
 Place your audio file directly in this folder:
-```
-public/audio/studio-demo.mp3
-```
+\`\`\`
+publichttps://hebbkx1anhila5yf.public.blob.vercel-storage.com/git-blob/prj_d5ca3UD7kTIwCYN2dUju5xHbHFhP/IJYBeW9LZZnZiiHCcxyNp8/public/audio/studio-demo.mp3
+\`\`\`
 
 ## How It Works:
 The podcast page will automatically detect and load your audio file, making the player fully functional with:
