@@ -26,6 +26,7 @@ import {
   BarChart3,
   Globe,
   ArrowRight,
+  MapPin,
 } from "lucide-react"
 import RevealOnScroll from "@/components/scroll-reveal"
 import InteractiveNavbar from "@/components/interactive-navbar"
@@ -39,31 +40,47 @@ const PodcastPage = () => {
     setOpenFaq(openFaq === index ? null : index)
   }
 
+  // SEO-optimized FAQ data with Islamabad-specific content
   const faqData = [
     {
-      question: "How long does it take to produce a podcast episode?",
+      question: "Where is your podcast studio located in Islamabad?",
       answer:
-        "A typical episode takes 2-3 weeks from recording to final delivery. This includes recording, editing, mastering, and distribution setup.",
+        "Our professional podcast studio is centrally located in Islamabad, easily accessible from all major areas including Blue Area, F-7, F-8, and surrounding neighborhoods. We provide detailed directions and parking information upon booking.",
     },
     {
-      question: "Do you provide equipment for remote recordings?",
+      question: "What makes your Islamabad podcast studio the best choice?",
       answer:
-        "Yes, we can provide professional recording equipment for remote sessions and guide you through optimal setup for the best audio quality.",
+        "Our Islamabad studio features state-of-the-art equipment, professional soundproofing, expert audio engineers, and comprehensive services from recording to distribution. We're the leading podcast studio in Islamabad with proven results.",
     },
     {
-      question: "Can you help with podcast marketing and growth?",
+      question: "How long does it take to produce a podcast episode in your Islamabad studio?",
       answer:
-        "We offer comprehensive marketing services including social media promotion, SEO optimization, and audience growth strategies.",
+        "A typical episode takes 2-3 weeks from recording to final delivery. This includes recording in our Islamabad studio, editing, mastering, and distribution setup.",
     },
     {
-      question: "What formats do you support for distribution?",
+      question: "Do you provide equipment for remote recordings from Islamabad?",
       answer:
-        "We prepare your podcast for all major platforms including Spotify, Apple Podcasts, Google Podcasts, and YouTube with optimized formats.",
+        "Yes, we can provide professional recording equipment for remote sessions throughout Islamabad and guide you through optimal setup for the best audio quality.",
     },
     {
-      question: "Do you offer ongoing support after production?",
+      question: "Can you help with podcast marketing and growth from Islamabad?",
       answer:
-        "Yes, we provide ongoing consultation, analytics tracking, and support to help your podcast grow and succeed long-term.",
+        "We offer comprehensive marketing services including social media promotion, SEO optimization, and audience growth strategies, serving clients across Islamabad and beyond.",
+    },
+    {
+      question: "What formats do you support for distribution from your Islamabad studio?",
+      answer:
+        "We prepare your podcast for all major platforms including Spotify, Apple Podcasts, Google Podcasts, and YouTube with optimized formats, all produced in our Islamabad studio.",
+    },
+    {
+      question: "Do you offer ongoing support after production in Islamabad?",
+      answer:
+        "Yes, we provide ongoing consultation, analytics tracking, and support to help your podcast grow and succeed long-term, with local support from our Islamabad team.",
+    },
+    {
+      question: "Is your Islamabad podcast studio available for business clients?",
+      answer:
+        "Absolutely! Our Islamabad studio is perfect for business podcasts, corporate content, and professional audio production. We serve businesses across Islamabad and Pakistan.",
     },
   ]
 
@@ -135,8 +152,82 @@ const PodcastPage = () => {
 
   return (
     <>
-      <InteractiveNavbar />
-      <div className="min-h-screen bg-black">
+
+              <InteractiveNavbar />
+        
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Podcast",
+              "name": "Triadic Podcast - Best Podcast Studio in Islamabad",
+              "description": "Professional podcast production studio in Islamabad with state-of-the-art equipment, expert audio engineers, and comprehensive services.",
+              "publisher": {
+                "@type": "Organization",
+                "name": "Triadic Media",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://i.ibb.co/C3frKdzY/Gear-Podcast-Gear-1327244548.png"
+                },
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Islamabad",
+                  "addressRegion": "Islamabad Capital Territory",
+                  "addressCountry": "PK"
+                }
+              },
+              "image": "https://i.ibb.co/C3frKdzY/Gear-Podcast-Gear-1327244548.png",
+              "url": "https://triadicmedia.com/podcast",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://triadicmedia.com/podcast"
+              },
+              "genre": "Business, Technology, Wellness, Entertainment",
+              "keywords": "podcast production, podcast studio, Islamabad, professional podcast, audio production, podcast editing, podcast marketing",
+              "inLanguage": "en-US",
+              "isFamilyFriendly": true,
+              "location": {
+                "@type": "Place",
+                "name": "Triadic Media Podcast Studio",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Islamabad",
+                  "addressRegion": "Islamabad Capital Territory",
+                  "addressCountry": "PK",
+                  "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 33.7000,
+                    "longitude": 73.0000
+                  }
+                }
+              },
+              "hasPart": [
+                {
+                  "@type": "Episode",
+                  "name": "The Future of AI in Business",
+                  "description": "Exploring how artificial intelligence is transforming business operations and decision-making processes.",
+                  "url": "https://triadicmedia.com/episodes/ai-business",
+                  "duration": "PT42M15S",
+                  "isFamilyFriendly": true,
+                  "thumbnail": "https://i.ibb.co/C3frKdzY/Gear-Podcast-Gear-1327244548.png",
+                  "uploadDate": "2023-01-01",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Sarah Chen"
+                  },
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Triadic Media"
+                  }
+                }
+              ]
+            })
+          }}
+        />
+        
+        <div className="min-h-screen bg-black">
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
           {/* Background Image */}
@@ -214,16 +305,17 @@ const PodcastPage = () => {
               </motion.div>
 
               <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tighter">
-                Triadic
+                Best Podcast Studio
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400">
                   {" "}
-                  Podcast
+                  in Islamabad
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">
-                Where <span className="text-purple-400 font-semibold">luxury meets technology</span> in podcast production. 
-                State-of-the-art studio equipment, expert editing, and strategic content creation that elevates your voice 
-                to <span className="text-pink-400 font-semibold">professional excellence</span>.
+                Islamabad's <span className="text-purple-400 font-semibold">premier podcast production studio</span> where luxury meets technology. 
+                State-of-the-art equipment, expert audio engineers, and strategic content creation that elevates your voice 
+                to <span className="text-pink-400 font-semibold">professional excellence</span>. Located in the heart of Islamabad, 
+                serving the twin cities area with the best podcast studio services in Pakistan.
               </p>
             </motion.div>
 
@@ -288,20 +380,32 @@ const PodcastPage = () => {
           </motion.div>
         </section>
 
-        {/* Podcast Statistics Section */}
+        {/* Location & Statistics Section */}
         <section className="py-16 bg-gradient-to-r from-purple-900/20 to-pink-900/20">
           <div className="container px-4 mx-auto">
             <RevealOnScroll>
               <div className="text-center mb-12">
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Podcast Production
+                  Islamabad's Leading
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
                     {" "}
-                    Statistics
+                    Podcast Studio
                   </span>
                 </h3>
                 <p className="text-gray-400 max-w-2xl mx-auto">
-                  Our track record of delivering exceptional podcast content that engages and grows audiences.
+                  Our track record of delivering exceptional podcast content that engages and grows audiences across Islamabad and Pakistan.
+                </p>
+              </div>
+              
+              {/* Location Information */}
+              <div className="mb-12 text-center">
+                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600/20 to-green-600/20 backdrop-blur-sm border border-blue-500/30 px-6 py-3 rounded-full mb-6">
+                  <MapPin className="w-5 h-5 text-blue-400" />
+                  <span className="text-blue-300 text-sm font-medium">Centrally Located in Islamabad</span>
+                </div>
+                <p className="text-gray-300 max-w-3xl mx-auto">
+                  Our professional podcast studio is strategically located in the heart of Islamabad, easily accessible from Blue Area, F-7, F-8, and surrounding neighborhoods. 
+                  We serve clients from across Islamabad, Rawalpindi, and the entire twin cities area.
                 </p>
               </div>
               
@@ -644,15 +748,15 @@ const PodcastPage = () => {
             <RevealOnScroll>
               <div className="text-center mb-16">
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tighter">
-                  Complete Podcast
+                  Islamabad's Complete
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
                     {" "}
-                    Solutions
+                    Podcast Solutions
                   </span>
                 </h2>
                 <p className="text-xl text-gray-400 max-w-3xl mx-auto">
                   From concept to distribution, we provide everything you need to create professional-quality podcasts
-                  that engage and grow your audience.
+                  that engage and grow your audience. Our Islamabad studio is equipped with the latest technology and staffed by expert professionals.
                 </p>
               </div>
             </RevealOnScroll>
@@ -750,14 +854,15 @@ const PodcastPage = () => {
             <RevealOnScroll>
               <div className="text-center mb-16">
                 <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tighter">
-                  Professional
+                  Islamabad's Professional
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
                     {" "}
                     Podcast Studio
                   </span>
                 </h2>
                 <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                  Experience our cutting-edge podcast studio designed for optimal audio quality, comfort, and creativity.
+                  Experience our cutting-edge podcast studio in Islamabad, designed for optimal audio quality, comfort, and creativity. 
+                  The most advanced podcast production facility in the capital city.
                 </p>
               </div>
             </RevealOnScroll>
@@ -1170,6 +1275,92 @@ const PodcastPage = () => {
           </div>
         </section>
 
+        {/* Location & Accessibility Section */}
+        <section className="py-20 bg-gradient-to-r from-blue-900/20 to-green-900/20">
+          <div className="container px-4 mx-auto">
+            <RevealOnScroll>
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tighter">
+                  Why Choose Our
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">
+                    {" "}
+                    Islamabad Studio?
+                  </span>
+                </h2>
+                <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                  Discover what makes our podcast studio the premier choice in Islamabad for professional audio production.
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[
+                  {
+                    title: "Prime Islamabad Location",
+                    description: "Centrally located in Islamabad's business district, easily accessible from all major areas including Blue Area, F-7, F-8, and surrounding neighborhoods.",
+                    icon: <MapPin className="w-8 h-8 text-blue-400" />,
+                    color: "from-blue-500/20 to-blue-600/20",
+                    borderColor: "border-blue-500/30",
+                  },
+                  {
+                    title: "State-of-the-Art Equipment",
+                    description: "Latest professional audio equipment, 24-bit recording quality, and advanced soundproofing technology for the best possible audio results.",
+                    icon: <Mic className="w-8 h-8 text-purple-400" />,
+                    color: "from-purple-500/20 to-purple-600/20",
+                    borderColor: "border-purple-500/30",
+                  },
+                  {
+                    title: "Expert Islamabad Team",
+                    description: "Local audio engineers and producers with years of experience in podcast production, serving Islamabad and Pakistan's creative community.",
+                    icon: <Users className="w-8 h-8 text-green-400" />,
+                    color: "from-green-500/20 to-green-600/20",
+                    borderColor: "border-green-500/30",
+                  },
+                  {
+                    title: "Comprehensive Services",
+                    description: "From recording to distribution, we handle every aspect of podcast production with professional quality and attention to detail.",
+                    icon: <Zap className="w-8 h-8 text-yellow-400" />,
+                    color: "from-yellow-500/20 to-yellow-600/20",
+                    borderColor: "border-yellow-500/30",
+                  },
+                  {
+                    title: "Flexible Scheduling",
+                    description: "24/7 studio availability to accommodate your schedule, with quick booking options and professional support throughout your project.",
+                    icon: <Calendar className="w-8 h-8 text-pink-400" />,
+                    color: "from-pink-500/20 to-pink-600/20",
+                    borderColor: "border-pink-500/30",
+                  },
+                  {
+                    title: "Local Islamabad Support",
+                    description: "Ongoing support and consultation from our Islamabad team, ensuring your podcast success with local expertise and understanding.",
+                    icon: <MessageCircle className="w-8 h-8 text-indigo-400" />,
+                    color: "from-indigo-500/20 to-indigo-600/20",
+                    borderColor: "border-indigo-500/30",
+                  },
+                ].map((feature, index) => (
+                  <RevealOnScroll key={index} delay={index * 0.1}>
+                    <motion.div
+                      whileHover={{ y: -10, scale: 1.02 }}
+                      className={`bg-gradient-to-br ${feature.color} backdrop-blur-sm border ${feature.borderColor} rounded-2xl p-6 hover:border-purple-500/50 transition-all duration-300 group`}
+                    >
+                      <div className="flex justify-center mb-4">
+                        <div className="w-16 h-16 bg-gray-800/50 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          {feature.icon}
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-3 text-center group-hover:text-purple-400 transition-colors duration-300">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-300 text-sm leading-relaxed text-center">
+                        {feature.description}
+                      </p>
+                    </motion.div>
+                  </RevealOnScroll>
+                ))}
+              </div>
+            </RevealOnScroll>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
           <div className="container px-4 mx-auto">
@@ -1183,7 +1374,7 @@ const PodcastPage = () => {
                   </span>
                 </h2>
                 <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-                  Get answers to common questions about our podcast production services.
+                  Get answers to common questions about our podcast production services in Islamabad.
                 </p>
               </div>
             </RevealOnScroll>
@@ -1499,12 +1690,12 @@ const PodcastPage = () => {
                   Ready to Start Your
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
                     {" "}
-                    Podcast Journey?
+                    Podcast Journey in Islamabad?
                   </span>
                 </h2>
                 <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                  Join the growing community of successful podcasters who trust Triadic Media to bring their vision to
-                  life with professional quality and strategic guidance.
+                  Join the growing community of successful podcasters in Islamabad who trust Triadic Media to bring their vision to
+                  life with professional quality and strategic guidance. Book your session at Islamabad's premier podcast studio today.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -1525,6 +1716,63 @@ const PodcastPage = () => {
                 </div>
               </motion.div>
             </RevealOnScroll>
+          </div>
+        </section>
+
+        {/* SEO Footer Section */}
+        <section className="py-16 bg-gray-900">
+          <div className="container px-4 mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div>
+                <h3 className="text-xl font-bold text-white mb-4">Podcast Studio Islamabad</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Professional podcast production studio in Islamabad offering state-of-the-art equipment, expert audio engineers, and comprehensive podcast services.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white mb-4">Our Services</h3>
+                <ul className="text-gray-400 text-sm space-y-2">
+                  <li>• Professional Audio Recording</li>
+                  <li>• Podcast Editing & Mastering</li>
+                  <li>• Content Strategy & Planning</li>
+                  <li>• Multi-Platform Distribution</li>
+                  <li>• SEO Optimization</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white mb-4">Islamabad Location</h3>
+                <ul className="text-gray-400 text-sm space-y-2">
+                  <li>• Centrally Located</li>
+                  <li>• Easy Access from Blue Area</li>
+                  <li>• F-7, F-8 Neighborhoods</li>
+                  <li>• Parking Available</li>
+                  <li>• 24/7 Studio Access</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white mb-4">Contact & Booking</h3>
+                <ul className="text-gray-400 text-sm space-y-2">
+                  <li>• WhatsApp: +971 56 299 7778</li>
+                  <li>• Phone: +971 56 299 7778</li>
+                  <li>• Email: info@triadicmedia.com</li>
+                  <li>• Quick Online Booking</li>
+                  <li>• Free Consultation</li>
+                </ul>
+              </div>
+            </div>
+            
+            {/* Additional SEO Content */}
+            <div className="mt-12 pt-8 border-t border-gray-800">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-white mb-6">Best Podcast Studio in Islamabad - Triadic Media</h3>
+                <p className="text-gray-400 max-w-4xl mx-auto leading-relaxed">
+                  Looking for the best podcast studio in Islamabad? Triadic Media offers professional podcast production services with state-of-the-art equipment, 
+                  expert audio engineers, and comprehensive support. Our Islamabad studio is centrally located and serves clients from across the twin cities area. 
+                  From recording to distribution, we handle every aspect of podcast production with professional quality. Book your session today and experience 
+                  why we're considered the premier podcast studio in Islamabad.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
       </div>
