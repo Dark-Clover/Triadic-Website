@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Best Podcast Studio in Islamabad - Triadic Media | Professional Podcast Production',
-  description: 'Triadic Media offers the best podcast studio in Islamabad with state-of-the-art equipment, expert audio engineers, and comprehensive podcast production services. Book your session today!',
+  description: 'Triadic Media offers the best podcast studio in Islamabad, centrally located in Blue Area near Centaurus Mall. Professional 24-bit audio recording, expert engineers, and comprehensive podcast production services. Serving F-7, F-8, and twin cities area. Book your session today!',
   keywords: [
     'podcast studio Islamabad',
     'best podcast studio Islamabad',
@@ -12,6 +12,10 @@ export const metadata: Metadata = {
     'podcast editing Islamabad',
     'podcast studio Blue Area',
     'podcast studio F-7 F-8',
+    'podcast studio F-6 F-7',
+    'podcast studio G-8 G-9',
+    'podcast studio near Centaurus',
+    'podcast studio near Serena Hotel',
     'podcast recording services',
     'audio production studio',
     'podcast marketing Islamabad',
@@ -24,32 +28,38 @@ export const metadata: Metadata = {
     'business podcast production',
     'technology podcast studio',
     'wellness podcast production',
-    'entertainment podcast studio'
+    'entertainment podcast studio',
+    'podcast studio near me',
+    'audio recording studio Blue Area',
+    'professional podcast production Islamabad',
+    '24-bit audio recording studio',
+    'podcast studio twin cities',
+    'podcast studio Rawalpindi Islamabad'
   ],
   authors: [{ name: 'Triadic Media' }],
   creator: 'Triadic Media',
   publisher: 'Triadic Media',
   robots: 'index, follow',
-  openGraph: {
-    title: 'Best Podcast Studio in Islamabad - Triadic Media',
-    description: 'Professional podcast production studio in Islamabad with state-of-the-art equipment, expert audio engineers, and comprehensive services. Book your session today!',
-    url: 'https://triadicmedia.com/podcast',
-    siteName: 'Triadic Media',
-    images: [
-      {
-        url: 'https://i.ibb.co/C3frKdzY/Gear-Podcast-Gear-1327244548.png',
-        width: 1200,
-        height: 630,
-        alt: 'Professional Podcast Studio in Islamabad',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
+      openGraph: {
+      title: 'Best Podcast Studio in Islamabad - Blue Area | Triadic Media',
+      description: 'Professional podcast production studio in Islamabad Blue Area, near Centaurus Mall. State-of-the-art equipment, expert audio engineers, serving F-7, F-8, and twin cities. Book your session today!',
+      url: 'https://triadicmedia.com/podcast',
+      siteName: 'Triadic Media',
+      images: [
+        {
+          url: 'https://i.ibb.co/C3frKdzY/Gear-Podcast-Gear-1327244548.png',
+          width: 1200,
+          height: 630,
+          alt: 'Professional Podcast Studio in Islamabad Blue Area - Best Audio Recording Studio',
+        },
+      ],
+      locale: 'en_US',
+      type: 'website',
+    },
   twitter: {
     card: 'summary_large_image',
-    title: 'Best Podcast Studio in Islamabad - Triadic Media',
-    description: 'Professional podcast production studio in Islamabad with state-of-the-art equipment and expert audio engineers.',
+    title: 'Best Podcast Studio in Islamabad - Blue Area | Triadic Media',
+    description: 'Professional podcast production studio in Islamabad Blue Area, near Centaurus Mall. Expert audio engineers, 24-bit recording, serving F-7, F-8, and twin cities.',
     images: ['https://i.ibb.co/C3frKdzY/Gear-Podcast-Gear-1327244548.png'],
     creator: '@triadicmedia',
     site: '@triadicmedia',
