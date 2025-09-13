@@ -48,7 +48,7 @@ export default function ClientLogos() {
                     x: {
                       repeat: Number.POSITIVE_INFINITY,
                       repeatType: "loop",
-                      duration: 30, // Even faster for mobile
+                      duration: 25, // Even faster for mobile
                       ease: "linear",
                     },
                   },
@@ -83,7 +83,7 @@ export default function ClientLogos() {
                   x: {
                     repeat: Number.POSITIVE_INFINITY,
                     repeatType: "loop",
-                    duration: 18, // Even faster for mobile, slightly different to avoid sync
+                    duration: 25, // Even faster for mobile, slightly different to avoid sync
                     ease: "linear",
                   },
                 },
