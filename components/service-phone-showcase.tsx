@@ -123,7 +123,7 @@ export default function ServicePhoneShowcase() {
                       setActiveService(service.id)
                     }
                   }}
-                  className={`flex items-center gap-1 cursor-pointer transition-all duration-300 p-0.5 rounded ${
+                  className={`flex items-center gap-2 cursor-pointer transition-all duration-300 p-0.5 rounded ${
                     activeService === service.id
                       ? "bg-[var(--accent-color)]/20 text-white"
                       : "text-gray-300 hover:text-white hover:bg-gray-800/50"
@@ -134,7 +134,7 @@ export default function ServicePhoneShowcase() {
                       ? "bg-[var(--accent-color)]"
                       : "bg-gray-500"
                   }`}></div>
-                  <h3 className="font-light text-[1px] leading-none">
+                  <h3 className="font-light text-[3px] leading-none">
                     {service.title}
                   </h3>
                 </a>
