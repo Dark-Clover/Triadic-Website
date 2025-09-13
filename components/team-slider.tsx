@@ -170,21 +170,21 @@ export default function TeamSlider() {
                   </p>
 
                   {teamMembers[currentIndex].socialLinks && (
-                    <div className="flex gap-3 justify-center md:justify-start">
+                    <div className="flex gap-3 justify-center items-center">
                       {teamMembers[currentIndex].socialLinks.map((link, idx) => (
                         <a
                           key={idx}
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="bg-gray-800 hover:bg-[var(--accent-color)] p-2 rounded-full transition-all duration-300 text-white"
+                          className="bg-gray-800 hover:bg-[var(--accent-color)] p-3 rounded-full transition-all duration-300 text-white flex items-center justify-center w-10 h-10"
                         >
                           {link.type === "instagram" ? (
-                            <Instagram size={18} />
+                            <Instagram size={20} />
                           ) : link.type === "linkedin" ? (
-                            <Linkedin size={18} />
+                            <Linkedin size={20} />
                           ) : link.type === "website" ? (
-                            <ExternalLink size={18} />
+                            <ExternalLink size={20} />
                           ) : null}
                         </a>
                       ))}

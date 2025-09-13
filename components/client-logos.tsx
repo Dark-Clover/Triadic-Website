@@ -48,7 +48,7 @@ export default function ClientLogos() {
                     x: {
                       repeat: Number.POSITIVE_INFINITY,
                       repeatType: "loop",
-                      duration: 20, // Even faster for mobile
+                      duration: 30, // Even faster for mobile
                       ease: "linear",
                     },
                   },
@@ -57,7 +57,7 @@ export default function ClientLogos() {
               {duplicatedTop.map((logo, index) => (
                 <div
                   key={`top-${index}`}
-                  className="flex-shrink-0 mx-8 md:mx-10 opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="flex-shrink-0 mx-8 md:mx-10 opacity-70 hover:opacity-100 transition-opacity duration-300"
                 >
                   <Image
                     src={logo.src || "/placeholder.svg"}
@@ -92,7 +92,7 @@ export default function ClientLogos() {
               {duplicatedBottom.map((logo, index) => (
                 <div
                   key={`bottom-${index}`}
-                  className="flex-shrink-0 mx-10 md:mx-12 opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="flex-shrink-0 mx-10 md:mx-12 opacity-70 hover:opacity-100 transition-opacity duration-300"
                 >
                   <Image
                     src={logo.src || "/placeholder.svg"}

@@ -111,7 +111,8 @@ export default function ServicePhoneShowcase() {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <RevealOnScroll direction="left">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
+            {/* Mobile: Dots with text on left */}
+            <div className="block sm:hidden space-y-3">
               {services.map((service) => (
                 <a
                   key={service.id}
@@ -122,13 +123,45 @@ export default function ServicePhoneShowcase() {
                       setActiveService(service.id)
                     }
                   }}
-                  className={`block cursor-pointer p-2 sm:p-4 rounded-xl transition-all duration-300 min-h-[70px] sm:min-h-[100px] flex flex-col justify-center ${
+                  className={`flex items-center gap-3 cursor-pointer transition-all duration-300 p-2 rounded-lg ${
+                    activeService === service.id
+                      ? "bg-[var(--accent-color)]/20 text-white"
+                      : "text-gray-300 hover:text-white hover:bg-gray-800/50"
+                  }`}
+                >
+                  <div className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    activeService === service.id
+                      ? "bg-[var(--accent-color)]"
+                      : "bg-gray-500"
+                  }`}></div>
+                  <h3 className="font-medium text-sm leading-tight">
+                    {service.title}
+                  </h3>
+                </a>
+              ))}
+            </div>
+
+            {/* Web: Original boxes */}
+            <div className="hidden sm:grid grid-cols-3 gap-4">
+              {services.map((service) => (
+                <a
+                  key={service.id}
+                  href={activeService === service.id ? `/services/${service.id}` : undefined}
+                  onClick={(e) => {
+                    if (activeService !== service.id) {
+                      e.preventDefault()
+                      setActiveService(service.id)
+                    }
+                  }}
+                  className={`block cursor-pointer p-4 rounded-xl transition-all duration-300 min-h-[100px] flex flex-col justify-center ${
                     activeService === service.id
                       ? "bg-[var(--accent-color)] text-white shadow-lg scale-105"
                       : "bg-gray-900 text-white hover:bg-gray-800"
                   }`}
                 >
-                  <h3 className="font-medium text-[8px] sm:text-sm md:text-base leading-tight text-center px-1 break-words">{service.title}</h3>
+                  <h3 className="font-medium text-sm md:text-base leading-tight text-center break-words">
+                    {service.title}
+                  </h3>
                 </a>
               ))}
             </div>
