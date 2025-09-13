@@ -30,6 +30,7 @@ import {
 } from "lucide-react"
 import RevealOnScroll from "@/components/scroll-reveal"
 import InteractiveNavbar from "@/components/interactive-navbar"
+import Footer from "@/components/footer"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { LocalBusinessSchema } from './local-business-schema'
@@ -1674,7 +1675,8 @@ const PodcastPage = () => {
           </div>
         </section>
 
-
+        {/* Footer */}
+        <Footer />
       </div>
     </>
   )

@@ -113,7 +113,7 @@ export default function InteractiveNavbar() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled ? "bg-white py-3 shadow-sm" : "bg-black/30 backdrop-blur-sm py-5",
+        scrolled ? "bg-white py-3 shadow-sm" : "bg-black py-5",
       )}
     >
       <div className="container px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -212,27 +212,27 @@ export default function InteractiveNavbar() {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="fixed top-0 left-0 right-0 bottom-0 bg-white z-[9999] flex flex-col mobile-menu-overlay">
-            <div className="flex justify-between items-center p-5 border-b border-gray-100">
+          <div className="fixed top-0 left-0 right-0 bottom-0 bg-black z-[9999] flex flex-col mobile-menu-overlay">
+            <div className="flex justify-between items-center p-4 border-b border-gray-800">
               <Link href="/" onClick={() => setIsOpen(false)}>
-                <img src="/triadic-logo-new.png" alt="Triadic Media" className="h-12 brightness-0" />
+                <img src="/triadic-logo-new.png" alt="Triadic Media" className="h-10 brightness-0 invert" />
               </Link>
               <button
-                className="p-2 rounded-full hover:bg-gray-100"
+                className="p-2 rounded-full hover:bg-gray-800 transition-colors"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close menu"
               >
-                <X className="h-6 w-6 text-gray-800" />
+                <X className="h-6 w-6 text-white" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-auto py-8">
-              <ul className="flex flex-col items-center gap-2">
+            <div className="flex-1 overflow-auto py-6">
+              <ul className="flex flex-col gap-1">
                 {navItems.map((item, index) => (
-                  <li key={index} className="w-full text-center border-b border-gray-100 last:border-0">
+                  <li key={index}>
                     <Link
                       href={item.href}
-                      className="block px-4 py-4 text-lg text-gray-800 hover:text-[#4a0072] transition-colors"
+                      className="block px-6 py-4 text-lg text-white hover:bg-gray-900 hover:text-[#9333ea] transition-all duration-200"
                       onClick={(e) => {
                         e.preventDefault()
                         setIsOpen(false)
@@ -246,12 +246,12 @@ export default function InteractiveNavbar() {
               </ul>
             </div>
 
-            <div className="p-5 border-t border-gray-100 flex justify-center">
+            <div className="p-6 border-t border-gray-800">
               <a
                 href="https://api.whatsapp.com/send/?phone=971562997778&text&type=phone_number&app_absent=0"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#4a0072] hover:bg-[#3a0058] text-white px-6 py-3 rounded-full inline-block w-full text-center"
+                className="bg-[#9333ea] hover:bg-[#7c3aed] text-white px-6 py-3 rounded-lg inline-block w-full text-center font-medium transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 Book a Consultation

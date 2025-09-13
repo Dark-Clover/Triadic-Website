@@ -11,7 +11,7 @@ const clientLogos = [
   { src: "/kingsmen-real-estate-logo.png", alt: "Kingsmen Real Estate Logo" },
   { src: "/ak-technologies-logo.png", alt: "AK Technologies Logo" },
   { src: "/milo-logo.png", alt: "Milo Logo" },
-  { src: "/blacksuit-logo.png", alt: "Blacksuit Logo" },
+  { src: "/Blacksuit Logo White.png", alt: "Blacksuit Logo" },
   { src: "/reflections-with-rubina-logo.png", alt: "Reflections with Rubina Logo" },
   { src: "/tbh-logo-removebg-preview copy.png", alt: "TBH Logo" },
   { src: "/savvy-logo-removebg-preview copy.png", alt: "Savvy Logo" },
@@ -20,9 +20,10 @@ const clientLogos = [
 ]
 
 export default function ClientLogos() {
-  // Ensure both rows include all logos, but rotate the bottom row to desync
-  const topRowLogos = clientLogos
-  const bottomRowLogos = [...clientLogos.slice(1), clientLogos[0]]
+  // Split logos evenly between top and bottom rows
+  const halfLength = Math.ceil(clientLogos.length / 2)
+  const topRowLogos = clientLogos.slice(0, halfLength)
+  const bottomRowLogos = clientLogos.slice(halfLength)
 
   // Duplicate for seamless loop
   const duplicatedTop = [...topRowLogos, ...topRowLogos]
@@ -41,22 +42,22 @@ export default function ClientLogos() {
           <div className="relative w-full overflow-hidden">
             <motion.div
               className="flex"
-              animate={{
-                x: ["0%", "-100%"],
-                transition: {
-                  x: {
-                    repeat: Number.POSITIVE_INFINITY,
-                    repeatType: "loop",
-                    duration: 60, // Adjust speed as needed
-                    ease: "linear",
+                animate={{
+                  x: ["0%", "-100%"],
+                  transition: {
+                    x: {
+                      repeat: Number.POSITIVE_INFINITY,
+                      repeatType: "loop",
+                      duration: 20, // Even faster for mobile
+                      ease: "linear",
+                    },
                   },
-                },
-              }}
+                }}
             >
               {duplicatedTop.map((logo, index) => (
                 <div
                   key={`top-${index}`}
-                  className="flex-shrink-0 mx-8 opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="flex-shrink-0 mx-8 md:mx-10 opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                 >
                   <Image
                     src={logo.src || "/placeholder.svg"}
@@ -82,7 +83,7 @@ export default function ClientLogos() {
                   x: {
                     repeat: Number.POSITIVE_INFINITY,
                     repeatType: "loop",
-                    duration: 57, // Slightly different speed to avoid sync
+                    duration: 18, // Even faster for mobile, slightly different to avoid sync
                     ease: "linear",
                   },
                 },
@@ -91,7 +92,7 @@ export default function ClientLogos() {
               {duplicatedBottom.map((logo, index) => (
                 <div
                   key={`bottom-${index}`}
-                  className="flex-shrink-0 mx-8 opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                  className="flex-shrink-0 mx-10 md:mx-12 opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                 >
                   <Image
                     src={logo.src || "/placeholder.svg"}

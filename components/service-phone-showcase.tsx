@@ -111,7 +111,7 @@ export default function ServicePhoneShowcase() {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <RevealOnScroll direction="left">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
               {services.map((service) => (
                 <a
                   key={service.id}
@@ -122,14 +122,13 @@ export default function ServicePhoneShowcase() {
                       setActiveService(service.id)
                     }
                   }}
-                  className={`block cursor-pointer p-4 rounded-xl transition-all duration-300 ${
+                  className={`block cursor-pointer p-2 sm:p-4 rounded-xl transition-all duration-300 min-h-[70px] sm:min-h-[100px] flex flex-col justify-center ${
                     activeService === service.id
                       ? "bg-[var(--accent-color)] text-white shadow-lg scale-105"
                       : "bg-gray-900 text-white hover:bg-gray-800"
                   }`}
                 >
-                  <div className="font-bold text-2xl mb-2">{service.number}</div>
-                  <h3 className="font-medium text-sm sm:text-base">{service.title}</h3>
+                  <h3 className="font-medium text-[8px] sm:text-sm md:text-base leading-tight text-center px-1 break-words">{service.title}</h3>
                 </a>
               ))}
             </div>

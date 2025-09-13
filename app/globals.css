@@ -97,8 +97,7 @@ body {
 
   /* Debug styles - make sure menu is visible */
   .mobile-menu-overlay {
-    border: 3px solid red !important;
-    background: white !important;
+    background: black !important;
   }
 }
 
