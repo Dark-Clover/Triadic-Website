@@ -1,0 +1,734 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 0, 0, 0;
+
+  /* Updated color palette with more subdued purples */
+  --primary-color: #2d0845; /* Deep purple - primary brand color */
+  --secondary-color: #0f172a; /* Deep blue - secondary color */
+  --accent-color: #9333ea; /* More subdued purple - accent color (was #d946ef) */
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-rgb));
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+}
+
+/* Mobile navigation improvements */
+@media (max-width: 768px) {
+  /* Ensure navigation header is always fully visible */
+  header {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Prevent content from being hidden behind navigation on mobile */
+  main {
+    padding-top: 80px;
+  }
+
+  /* Ensure mobile menu covers full screen */
+  .mobile-menu-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+    background: white !important;
+    overflow: hidden !important;
+  }
+
+  /* Prevent body scroll when mobile menu is open */
+  body.menu-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+  }
+
+  /* Ensure mobile menu content is properly positioned */
+  .mobile-menu-overlay > div {
+    position: relative !important;
+    z-index: 10000 !important;
+  }
+
+  /* Force mobile menu to be above everything */
+  .mobile-menu-overlay * {
+    position: relative !important;
+    z-index: 10000 !important;
+  }
+
+  /* Additional mobile menu positioning fixes */
+  .mobile-menu-overlay {
+    transform: translateZ(0) !important;
+    will-change: transform !important;
+    backface-visibility: hidden !important;
+  }
+
+  /* Ensure mobile menu is above all other elements */
+  body > .mobile-menu-overlay {
+    position: fixed !important;
+    z-index: 999999 !important;
+  }
+
+  /* Force mobile menu visibility */
+  .mobile-menu-overlay {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Ensure mobile menu covers entire screen */
+  .mobile-menu-overlay {
+    min-height: 100vh !important;
+    min-width: 100vw !important;
+    max-height: 100vh !important;
+    max-width: 100vw !important;
+  }
+
+  /* Debug styles - make sure menu is visible */
+  .mobile-menu-overlay {
+    background: black !important;
+  }
+}
+
+.parallax {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.scroller {
+  display: flex;
+  white-space: nowrap;
+  text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+@media (min-width: 768px) {
+  .scroller {
+    font-size: 12rem;
+    line-height: 12rem;
+  }
+}
+
+/* Text shadow for scroll velocity text - toned down */
+.text-shadow-glow {
+  text-shadow: 0 0 10px rgba(147, 51, 234, 0.3), 0 0 20px rgba(147, 51, 234, 0.2);
+}
+
+.velocity-text-glow {
+  position: relative;
+}
+
+.velocity-text-glow::after {
+  content: attr(data-content);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.3;
+  color: var(--accent-color);
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 210 40% 98%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration) linear infinite;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration) linear infinite;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-dark {
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Text masking effect */
+.text-mask {
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+}
+
+.text-mask::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+/* Text masking effect with slideshow */
+.text-mask-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.text-mask-container h2 {
+  background-image: url("/fashion-1.png");
+  background-size: cover;
+  background-position: center;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.text-mask-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.slideshow-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slideshow-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 1s ease-in-out;
+}
+
+.text-mask-outline h2 {
+  -webkit-text-stroke: 1px rgba(147, 51, 234, 0.2);
+}
+
+.slideshow-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slideshow-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 1s ease-in-out;
+  filter: brightness(1.3) contrast(1.1); /* Slightly toned down */
+}
+
+.slideshow-image.active {
+  animation: zoom 10s infinite alternate;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+/* Add this to the end of the file */
+@keyframes autoSlide {
+  0%,
+  20% {
+    opacity: 1;
+  }
+  25%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.slideshow-image:nth-child(1) {
+  animation: autoSlide 20s infinite;
+  animation-delay: 0s;
+}
+
+.slideshow-image:nth-child(2) {
+  animation: autoSlide 20s infinite;
+  animation-delay: 4s;
+}
+
+.slideshow-image:nth-child(3) {
+  animation: autoSlide 20s infinite;
+  animation-delay: 8s;
+}
+
+.slideshow-image:nth-child(4) {
+  animation: autoSlide 20s infinite;
+  animation-delay: 12s;
+}
+
+.slideshow-image:nth-child(5) {
+  animation: autoSlide 20s infinite;
+  animation-delay: 16s;
+}
+
+/* Blog styles */
+.prose h1 {
+  font-size: 2.25rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.prose h2 {
+  font-size: 1.75rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+.prose h4 {
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+.prose p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  color: #d1d5db;
+}
+
+.prose ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+  color: #d1d5db;
+}
+
+.prose li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose a {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  text-decoration: none;
+}
+
+.prose blockquote {
+  border-left: 4px solid var(--accent-color);
+  padding-left: 1rem;
+  font-style: italic;
+  margin: 1.5rem 0;
+  color: #9ca3af;
+}
+
+.prose code {
+  background-color: rgba(147, 51, 234, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--accent-color);
+}
+
+.prose pre {
+  background-color: #1f2937;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+  color: #e5e7eb;
+}
+
+/* Team member card hover effects */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.team-card-gradient {
+  background: linear-gradient(45deg, rgba(45, 8, 69, 0.2), rgba(147, 51, 234, 0.2), rgba(45, 8, 69, 0.2));
+  background-size: 200% 200%;
+  animation: gradientShift 5s ease infinite;
+}
+
+.team-card-hover {
+  transition: all 0.3s ease;
+}
+
+.team-card-hover:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 25px -5px rgba(147, 51, 234, 0.1), 0 10px 10px -5px rgba(147, 51, 234, 0.1);
+}
+
+.team-social-icon {
+  transition: all 0.2s ease;
+}
+
+.team-social-icon:hover {
+  transform: translateY(-3px);
+  color: var(--accent-color);
+}
+
+/* 3D card effect */
+.card-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.card-3d-content {
+  transition: transform 0.5s ease;
+}
+
+.card-3d:hover .card-3d-content {
+  transform: translateZ(20px);
+}
+
+.card-3d-image {
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.card-3d:hover .card-3d-image {
+  transform: translateZ(30px);
+  box-shadow: 0 10px 20px rgba(147, 51, 234, 0.3);
+}
+
+/* Mobile-friendly improvements */
+@media (max-width: 768px) {
+  /* Reduce text sizes for better readability on small screens */
+  h1,
+  .text-5xl,
+  .text-6xl,
+  .text-7xl {
+    font-size: clamp(2.5rem, 8vw, 4rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  h2,
+  .text-4xl {
+    font-size: clamp(2rem, 6vw, 3rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  h3,
+  .text-3xl {
+    font-size: clamp(1.5rem, 5vw, 2.25rem) !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Improve touch targets */
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Ensure proper spacing */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Adjust section padding */
+  section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* Ensure images don't overflow */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Improve form elements on mobile */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+  }
+
+  /* Fix for mobile scrolling issues */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Center text on mobile by default */
+  .text-left {
+    text-align: center !important;
+  }
+
+  /* Reset text alignment for larger screens */
+  @media (min-width: 640px) {
+    .sm\:text-left {
+      text-align: left !important;
+    }
+  }
+}
+
+/* Improve WhatsApp widget positioning on mobile */
+@media (max-width: 640px) {
+  .fixed.bottom-6.right-6.z-50 {
+    bottom: 1rem !important;
+    right: 1rem !important;
+  }
+}
+
+/* Additional mobile improvements */
+@media (max-width: 640px) {
+  /* Improve spacing for all sections */
+  section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Ensure buttons are easily tappable */
+  button,
+  a.button,
+  [role="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.5rem 1rem;
+    touch-action: manipulation;
+  }
+
+  /* Improve form elements */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 0.75rem !important;
+  }
+
+  /* Fix spacing issues */
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Improve card layouts */
+  .grid {
+    gap: 1rem !important;
+  }
+
+  /* Ensure proper text sizing */
+  p,
+  li,
+  a {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Fix navigation buttons on carousels */
+  .absolute.bottom-4.right-4,
+  .absolute.bottom-4.left-4 {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    left: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 1rem !important;
+  }
+}
+
+/* Improve scrolling experience */
+html,
+body {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Fix for iOS input styling */
+input,
+textarea {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+/* Enhanced mobile navigation improvements */
+@media (max-width: 768px) {
+  /* Improve mobile navigation */
+  .mobile-nav-item {
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Fix carousel navigation on mobile */
+  .carousel-nav-mobile {
+    position: static !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 1rem !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Improve touch targets for mobile navigation */
+  .mobile-nav-button {
+    min-height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Fix team and testimonial navigation on mobile */
+  .team-nav-mobile,
+  .testimonial-nav-mobile {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+}
+
+/* SVG Icon Zoom Effect */
+.svg-icon {
+  transition: transform 0.3s ease;
+}
+
+.svg-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Apply to all SVG icons in the site */
+svg {
+  transition: transform 0.3s ease;
+}
+
+svg:hover {
+  transform: scale(1.2);
+}

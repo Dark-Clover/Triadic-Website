@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://triadicmedia.com/sitemap.xml
+
+# Podcast page priority
+Allow: /podcast
+Allow: /podcast/*
+
+# Crawl delay for better indexing
+Crawl-delay: 1
