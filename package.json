@@ -54,7 +54,7 @@
     "lucide-react": "^0.454.0",
     "next": "14.2.16",
     "next-themes": "latest",
-    "ogl": "^1.0.11",
+    "ogl": "latest",
     "react": "^18",
     "react-day-picker": "latest",
     "react-dom": "^18",
